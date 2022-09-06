@@ -10,13 +10,15 @@ public class Square: MonoBehaviour
     public GroundCheck ground;
     private float gravity = 5.0f;
 
-    private float walkInput = 0.0f;
     private float walkSpeed = 5.0f;
     private float jumpSpeed = 5.0f;
 
     private bool isWalk = false;
+    private bool isJump = false;
     private bool isGround = false;
 
+    private float jumpPos = 0.0f;   
+    private float jumpHeight = 3.0f;   
     private float xSpeed,ySpeed;
 
     // Start is called before the first frame update
@@ -51,6 +53,24 @@ public class Square: MonoBehaviour
     }
 
     void Jamp(float jampInput){
+
+        if(isGround){
+            if (jampInput>0){
+                ySpeed = jumpSpeed;
+                jumpPos = transform.position.y;
+                isJump = true;
+            }
+            else{
+                isJump = false;
+            }
+        }else if(isJump){
+            if(jampInput > 0 && jumpHeight > transform.position.y - jumpPos ){
+                ySpeed = jumpSpeed;
+            }
+            else{
+                isJump = false;
+            }
+        }
 
     }
 
