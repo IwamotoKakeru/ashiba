@@ -8,10 +8,10 @@ public class Square: MonoBehaviour
     private Animator anim;
 
     public GroundCheck ground,ceiling;
-    private float gravity = 5.0f;
+    private float gravity = 4.0f;
 
     private float walkSpeed = 5.0f;
-    private float jumpSpeed = 8.0f;
+    private float jumpSpeed = 6.4f;
 
     private bool isWalk = false;
     private bool isJump = false;
@@ -19,7 +19,7 @@ public class Square: MonoBehaviour
     private bool isCeiling = false;
 
     private float jumpPos = 0.0f;   
-    private float jumpHeight = 3.2f;   
+    private float jumpHeight = 2.2f;   
     private float jumpTime = 0.0f;
     public AnimationCurve jumpCurve;
 
