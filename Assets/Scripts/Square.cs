@@ -11,7 +11,7 @@ public class Square: MonoBehaviour
     private float gravity = 5.0f;
 
     private float walkSpeed = 5.0f;
-    private float jumpSpeed = 5.0f;
+    private float jumpSpeed = 8.0f;
 
     private bool isWalk = false;
     private bool isJump = false;
@@ -19,7 +19,10 @@ public class Square: MonoBehaviour
     private bool isCeiling = false;
 
     private float jumpPos = 0.0f;   
-    private float jumpHeight = 3.0f;   
+    private float jumpHeight = 3.2f;   
+    private float jumpTime = 0.0f;
+    public AnimationCurve jumpCurve;
+
     private float xSpeed,ySpeed;
 
     // Start is called before the first frame update
@@ -55,25 +58,29 @@ public class Square: MonoBehaviour
         anim.SetBool("walk",isWalk);
     }
 
-    void Jamp(float jampInput){
+    void jump(float jumpInput){
 
         if(isGround){
-            if (jampInput>0){
+            if (jumpInput>0){
                 ySpeed = jumpSpeed;
                 jumpPos = transform.position.y;
                 isJump = true;
+                jumpTime = 0.0f;
             }
             else{
                 isJump = false;
             }
         }else if(isJump){
-            if(jampInput > 0 && jumpHeight > transform.position.y - jumpPos && !isCeiling ){
+            if(jumpInput > 0 && jumpHeight > transform.position.y - jumpPos && !isCeiling ){
                 ySpeed = jumpSpeed;
+                jumpTime += Time.deltaTime;
             }
             else{
                 isJump = false;
+                jumpTime = 0.0f;
             }
         }
+        if(isJump)  ySpeed *= jumpCurve.Evaluate(jumpTime);
         anim.SetBool("isGround",isGround);
 
     }
@@ -84,7 +91,7 @@ public class Square: MonoBehaviour
         Initialize();
 
         Walk(Input.GetAxisRaw("Horizontal"));
-        Jamp(Input.GetAxis("Vertical"));
+        jump(Input.GetAxis("Vertical"));
 
         rb.velocity = new Vector2(xSpeed, ySpeed);
     }
