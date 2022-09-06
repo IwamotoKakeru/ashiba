@@ -7,7 +7,7 @@ public class Square: MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
 
-    public GroundCheck ground;
+    public GroundCheck ground,ceiling;
     private float gravity = 5.0f;
 
     private float walkSpeed = 5.0f;
@@ -16,6 +16,7 @@ public class Square: MonoBehaviour
     private bool isWalk = false;
     private bool isJump = false;
     private bool isGround = false;
+    private bool isCeiling = false;
 
     private float jumpPos = 0.0f;   
     private float jumpHeight = 3.0f;   
@@ -30,8 +31,10 @@ public class Square: MonoBehaviour
 
     void Initialize(){
         isGround = ground.IsGround();
+        isCeiling = ceiling.IsGround();
         xSpeed = 0.0f;
-        ySpeed = -gravity;
+        if(isGround)    ySpeed = 0.0f;
+        else            ySpeed = -gravity;
     }
 
     void Walk(float walkInput){
@@ -64,13 +67,14 @@ public class Square: MonoBehaviour
                 isJump = false;
             }
         }else if(isJump){
-            if(jampInput > 0 && jumpHeight > transform.position.y - jumpPos ){
+            if(jampInput > 0 && jumpHeight > transform.position.y - jumpPos && !isCeiling ){
                 ySpeed = jumpSpeed;
             }
             else{
                 isJump = false;
             }
         }
+        anim.SetBool("isGround",isGround);
 
     }
 
