@@ -10,7 +10,7 @@ public class Square: MonoBehaviour
     public GroundCheck ground,ceiling;
     private float gravity = 4.0f;
 
-    private float walkSpeed = 5.0f;
+    private float walkSpeed = 3.0f;
     private float jumpSpeed = 3.0f;
 
     private bool isWalk = false;
