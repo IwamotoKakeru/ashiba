@@ -74,9 +74,10 @@ public class SquareAI : MonoBehaviour
                     Sq.jump(1.0f);
                     if(isGround) state = 3;
                 }
-                else if(isGround && isWall && flag)
-                 state = 1;
-                flag = false;
+                else if(isGround && isWall && flag){
+                    state = 1;
+                    flag = false;
+                }
                 break;
             
             
