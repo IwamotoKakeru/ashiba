@@ -10,7 +10,7 @@ public class Square: MonoBehaviour
     public GroundCheck ground,ceiling;
     private float gravity = 4.0f;
 
-    private float walkSpeed = 5.0f;
+    private float walkSpeed = 3.0f;
     private float jumpSpeed = 3.0f;
 
     private bool isWalk = false;
@@ -32,7 +32,7 @@ public class Square: MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    void Initialize(){
+    public void Initialize(){
         isGround = ground.IsGround();
         isCeiling = ceiling.IsGround();
         xSpeed = 0.0f;
@@ -40,7 +40,7 @@ public class Square: MonoBehaviour
         else            ySpeed = -gravity;
     }
 
-    void Walk(float walkInput){
+    public void Walk(float walkInput){
         if(walkInput>0.0f){
             xSpeed = walkSpeed;
             transform.localScale = new Vector3(1,1,1);
@@ -56,9 +56,10 @@ public class Square: MonoBehaviour
             isWalk = false;
         }
         anim.SetBool("walk",isWalk);
+        rb.velocity = new Vector2(xSpeed, rb.velocity.y);
     }
 
-    void jump(float jumpInput){
+    public void jump(float jumpInput){
 
         if(isGround){
             if (jumpInput>0){
@@ -82,10 +83,11 @@ public class Square: MonoBehaviour
         }
         if(isJump)  ySpeed *= jumpCurve.Evaluate(jumpTime);
         anim.SetBool("isGround",isGround);
-
+        rb.velocity = new Vector2(rb.velocity.x, ySpeed);
     }
 
     // Update is called once per frame
+    /*
     void FixedUpdate()
     {
         Initialize();
@@ -93,7 +95,7 @@ public class Square: MonoBehaviour
         Walk(Input.GetAxisRaw("Horizontal"));
         jump(Input.GetAxis("Vertical"));
 
-        rb.velocity = new Vector2(xSpeed, ySpeed);
     }
+    */
 
 }
