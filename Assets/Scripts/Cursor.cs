@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cursor : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject reticle;
+    //public GameObject reticle;
     private Vector3 mousePosition, target;
 
     void Start()
@@ -20,7 +20,8 @@ public class Cursor : MonoBehaviour
         mousePosition.z = 10;
         target = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = target;
-        
-
+        if(Input.GetMouseButtonDown(0)){
+            //Instantiate(reticle,target,Quaternion.identity);
+        }
     }
 }
