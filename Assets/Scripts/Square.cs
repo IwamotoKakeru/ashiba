@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Square: MonoBehaviour
 {
+    private string cursorTag = "GameController";
+
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -86,7 +88,13 @@ public class Square: MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, ySpeed);
     }
 
-    // Update is called once per frame
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(cursorTag))
+        {
+            Destroy(this.gameObject);
+        }
+    }
     /*
     void FixedUpdate()
     {
