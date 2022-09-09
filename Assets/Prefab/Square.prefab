@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2435554141311753246}
   - component: {fileID: 2435554141311753247}
   - component: {fileID: 2435554141311753244}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: WallCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 7047475473061608513}
   - component: {fileID: 7047475473061608516}
   - component: {fileID: 7047475473061608512}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Square
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 7047475473433119926}
   - component: {fileID: 7047475473433119927}
   - component: {fileID: 7047475473433119924}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 7047475474266225025}
   - component: {fileID: 7047475474266225024}
   - component: {fileID: 7047475474266225027}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
