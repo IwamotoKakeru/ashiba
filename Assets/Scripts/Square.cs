@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class Square: MonoBehaviour
 {
+    private string cursorTag = "GameController";
+
     private Rigidbody2D rb;
     private Animator anim;
 
     public GroundCheck ground,ceiling;
+    public GameObject corpse;
     private float gravity = 4.0f;
 
-    private float walkSpeed = 3.0f;
+    private float walkSpeed = 2.0f;
     private float jumpSpeed = 3.0f;
 
     private bool isWalk = false;
@@ -21,6 +24,7 @@ public class Square: MonoBehaviour
     private float jumpPos = 0.0f;   
     private float jumpHeight = 1.2f;   
     private float jumpTime = 0.0f;
+    private float jumpMaxTime = 1.0f;
     public AnimationCurve jumpCurve;
 
     private float xSpeed,ySpeed;
@@ -72,7 +76,7 @@ public class Square: MonoBehaviour
                 isJump = false;
             }
         }else if(isJump){
-            if(jumpInput > 0 && jumpHeight > transform.position.y - jumpPos && !isCeiling ){
+            if(jumpInput > 0 && jumpHeight > transform.position.y - jumpPos && !isCeiling && jumpMaxTime>jumpTime){
                 ySpeed = jumpSpeed;
                 jumpTime += Time.deltaTime;
             }
@@ -86,7 +90,14 @@ public class Square: MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, ySpeed);
     }
 
-    // Update is called once per frame
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag(cursorTag))
+        {
+            Instantiate(corpse,this.transform.position,Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+    }
     /*
     void FixedUpdate()
     {
