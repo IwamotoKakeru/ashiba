@@ -14,7 +14,7 @@ public class Square: MonoBehaviour
     private float gravity = 4.0f;
 
     private float walkSpeed = 2.0f;
-    private float jumpSpeed = 3.0f;
+    private float jumpSpeed = 5.0f;
 
     private bool isWalk = false;
     private bool isJump = false;

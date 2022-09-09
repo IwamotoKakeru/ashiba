@@ -52,6 +52,10 @@ public class SquareAI : MonoBehaviour
                     state = 1;
                     flag = false;
                     }
+                    else if(isWall) {
+                        state = 1;
+                        flag = false;
+                    }
                 }
                 else if(isGround && isWall && flag){
                     state = 3;
@@ -81,6 +85,10 @@ public class SquareAI : MonoBehaviour
                         state = 3;
                         flag = false;
                     }
+                    else if(isWall) {
+                        state = 3;
+                        flag = false;
+                    }
                 }
                 else if(isGround && isWall && flag){
                     state = 1;
@@ -106,15 +114,15 @@ public class SquareAI : MonoBehaviour
                 break;
         }
 
-        /*
-        if(isGround == false) Sq.Walk(0.0f);
-        if(isWall == true) {
-            Sq.Walk(0.0f);
-            Sq.jump(1.0f);
-        }else{
-            Sq.Walk(1.0f);
-            Sq.jump(0.0f);
-        }*/
-
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+           if(state == 1) state = 3;
+           else if(state == 3) state = 1; 
+        }
+    }
+
 }
