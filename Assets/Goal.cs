@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Goal : MonoBehaviour
 {
+    public AudioClip goal;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
-        
+        audioSource = this.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,6 +24,7 @@ public class Goal : MonoBehaviour
             if (collision.gameObject.CompareTag("Player"))
             {
                 Debug.Log("ゴール");
+                audioSource.PlayOneShot(goal);
             }
         
     }
