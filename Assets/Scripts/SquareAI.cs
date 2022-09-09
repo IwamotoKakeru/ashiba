@@ -37,6 +37,7 @@ public class SquareAI : MonoBehaviour
                 Sq.Walk(1.0f);
                 Sq.jump(0.0f);
                 if(isWall) state = 2;
+                if(!isGround) state = 5;
                 break;
 
             case 2:
@@ -47,7 +48,10 @@ public class SquareAI : MonoBehaviour
                 if(!isWall){
                     Sq.Walk(1.0f);
                     Sq.jump(1.0f);
-                    if(isGround) state = 1;
+                    if(isGround){
+                    state = 1;
+                    flag = false;
+                    }
                 }
                 else if(isGround && isWall && flag){
                     state = 3;
@@ -61,6 +65,7 @@ public class SquareAI : MonoBehaviour
                 Sq.jump(0.0f);
 
                 if(isWall) state = 4;
+                if(!isGround) state = 6;
             
                 break;
             
@@ -72,12 +77,27 @@ public class SquareAI : MonoBehaviour
                 if(!isWall){
                     Sq.Walk(-1.0f);
                     Sq.jump(1.0f);
-                    if(isGround) state = 3;
+                    if(isGround) {
+                        state = 3;
+                        flag = false;
+                    }
                 }
                 else if(isGround && isWall && flag){
                     state = 1;
                     flag = false;
                 }
+                break;
+            
+            case 5:
+                Sq.Walk(0.0f);
+                Sq.jump(0.0f);
+                if(isGround) state = 1;
+                break;
+            
+            case 6: 
+                Sq.Walk(0.0f);
+                Sq.jump(0.0f);
+                if(isGround) state = 3;
                 break;
             
             
