@@ -25,7 +25,7 @@ public class Cursor : MonoBehaviour
         transform.position = target;
 
         //クリックされたときのみカーソルの当たり判定をOnにする
-        if(Input.GetMouseButtonDown(0)){
+        if(Input.GetMouseButton(0)){
             cursorCollider.enabled = true;
         }else{
             cursorCollider.enabled = false;
