@@ -8,6 +8,8 @@ public class SquareAI : MonoBehaviour
     private int state = 1;
     private bool flag = false;
 
+    private float beforeJumpX,afterJumpX;
+
     Square Sq ;
     public GroundCheck ground,ceiling,wall;
 
@@ -41,26 +43,21 @@ public class SquareAI : MonoBehaviour
                 break;
 
             case 2:
+                beforeJumpX = transform.position.x;
                 Sq.Walk(0.0f);
                 Sq.jump(1.0f);
-                if(isWall && !isGround) flag = true;
 
                 if(!isWall){
                     Sq.Walk(1.0f);
                     Sq.jump(1.0f);
+                    afterJumpX = transform.position.x;
                     if(isGround){
-                    state = 1;
-                    flag = false;
-                    }
-                    else if(isWall) {
                         state = 1;
                         flag = false;
                     }
                 }
-                else if(isGround && isWall && flag){
-                    state = 3;
-                    flag = false;
-                } 
+                
+                
              
                 break;
 
