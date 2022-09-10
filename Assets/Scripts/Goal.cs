@@ -6,16 +6,26 @@ public class Goal : MonoBehaviour
 {
     public AudioClip goal;
     public AudioSource audioSource;
+
+    public int goalNumGetter = 1;
+    private int goalNum = 1;
+
     // Start is called before the first frame update
     void Start()
     {
         audioSource = this.gameObject.GetComponent<AudioSource>();
+        goalNum = goalNumGetter;
+    }
+
+    public int returnGoalNum(){
+        return goalNum;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+
+    public bool returnGoalFlag(){
+        if(goalNum == 0)    return true;
+        else                return false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -23,8 +33,11 @@ public class Goal : MonoBehaviour
        
             if (collision.gameObject.CompareTag("Player"))
             {
-                Debug.Log("ゴール");
+                goalNum --;
+                Debug.Log("1体ゴール");
+                Destroy(collision.gameObject);
                 audioSource.PlayOneShot(goal);
+                if(goalNum == 0) Debug.Log("全体ゴール");
             }
         
     }
