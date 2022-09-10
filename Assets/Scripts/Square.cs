@@ -6,9 +6,15 @@ public class Square: MonoBehaviour
 {
     private string cursorTag = "GameController";
 
+    //AudioCrips   
+    public AudioClip jumpSE;
+
+    //Components
     private Rigidbody2D rb;
     private Animator anim;
+    private AudioSource audioSC;
 
+    //GameObjects
     public GroundCheck ground,ceiling;
     public GameObject corpse;
     private float gravity = 4.0f;
@@ -21,6 +27,7 @@ public class Square: MonoBehaviour
     private bool isGround = false;
     private bool isCeiling = false;
 
+    //Jump variables
     private float jumpPos = 0.0f;   
     private float jumpHeight = 1.2f;   
     private float jumpTime = 0.0f;
@@ -34,6 +41,7 @@ public class Square: MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        audioSC = GetComponent<AudioSource>();
     }
 
     public void Initialize(){
@@ -64,6 +72,8 @@ public class Square: MonoBehaviour
     }
 
     public void jump(float jumpInput){
+
+        if(isGround && jumpInput>0.0f &&!isJump) audioSC.PlayOneShot(jumpSE);
 
         if(isGround){
             if (jumpInput>0){
