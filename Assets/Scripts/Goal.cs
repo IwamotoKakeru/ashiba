@@ -36,8 +36,8 @@ public class Goal : MonoBehaviour
                 goalNum --;
                 Debug.Log("1体ゴール");
                 Destroy(collision.gameObject);
-
                 audioSource.PlayOneShot(goal);
+                if(goalNum == 0) Debug.Log("全体ゴール");
             }
         
     }
