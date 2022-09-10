@@ -6,6 +6,7 @@ public class Goal : MonoBehaviour
 {
     public AudioClip goal;
     public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +26,7 @@ public class Goal : MonoBehaviour
             {
                 Debug.Log("ゴール");
                 audioSource.PlayOneShot(goal);
+                Destroy(collision.gameObject);
             }
         
     }
