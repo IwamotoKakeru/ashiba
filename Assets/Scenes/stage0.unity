@@ -230,6 +230,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
+        type: 3}
+      propertyPath: MaxPlayerGetter
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 543211082710862602, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
         type: 3}
       propertyPath: m_Name
@@ -923,7 +928,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -290, y: 20}
+  m_AnchoredPosition: {x: -240, y: -30}
   m_SizeDelta: {x: 960, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943411900
@@ -958,7 +963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u2193\u304A\u3059\u3068\u3046\u307E\u308C\u308B"
+  m_Text: "\u2190\u304A\u3059\u3068\u3046\u307E\u308C\u308B"
 --- !u!222 &1943411901
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1055,7 +1060,7 @@ PrefabInstance:
     - target: {fileID: 4477593899322352032, guid: 4d390c272771248269d4547098b353be,
         type: 3}
       propertyPath: goalNumGetter
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4477593899322352033, guid: 4d390c272771248269d4547098b353be,
         type: 3}

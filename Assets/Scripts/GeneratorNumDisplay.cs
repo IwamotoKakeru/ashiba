@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NumDisplay : MonoBehaviour
+public class GeneratorNumDisplay : MonoBehaviour
 {
     // Start is called before the first frame update
-
     private TextMesh textMesh;
     void Start()
     {
-        textMesh = GetComponent<TextMesh>();
+        
     }
 
-    public void DisplayNum(int num){
-        textMesh.text = num.ToString("0");
+    // Update is called once per frame
+    void Update()
+    {
+        
     }
-
 }
