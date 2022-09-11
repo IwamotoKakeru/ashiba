@@ -17,7 +17,7 @@ public class Goal : MonoBehaviour
         audioSource = this.gameObject.GetComponent<AudioSource>();
         numDisplay = GetComponentInChildren<NumDisplay>();
         goalNum = goalNumGetter;
-        numDisplay.DisplayNum(goalNum);
+        numDisplay.DisplayNum(goalNumGetter);
     }
 
     public int returnGoalNum(){
