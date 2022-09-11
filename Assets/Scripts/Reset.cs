@@ -18,7 +18,7 @@ public class Reset : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(cursorTag))
         {
-           SceneManager.LoadScene(0);
+           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

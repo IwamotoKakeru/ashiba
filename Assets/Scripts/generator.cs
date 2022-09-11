@@ -8,20 +8,23 @@ using UnityEngine;
 public class generator : MonoBehaviour
 {
     public GameObject Square;
-    public int MaxPlayer = 3;
-    private int numOfPlayer;
+    private NumDisplay numDisplay;
+    public int MaxPlayerGetter = 3;
+    private int MaxPlayer =1;
+    private int numOfPlayer = 0;
     private string cursorTag = "GameController";
     // Start is called before the first frame update
+    void Awake()
+    {
+        MaxPlayer = MaxPlayerGetter;
+        numDisplay = GetComponentInChildren<NumDisplay>();
+    }
     void Start()
     {
-        
+        numDisplay.DisplayNum(MaxPlayer);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
@@ -29,8 +32,9 @@ public class generator : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(cursorTag))
             {
-            Instantiate(Square, this.transform.position+new Vector3(0,-1.0f,0), Quaternion.identity);
-            numOfPlayer +=1;
+                Instantiate(Square, this.transform.position + new Vector3(0, -1.0f, 0), Quaternion.identity);
+                numOfPlayer += 1;
+                numDisplay.DisplayNum(MaxPlayer - numOfPlayer);
             }
         }
     }

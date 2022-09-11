@@ -1,26 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalGeneral : MonoBehaviour
 {
     // Start is called before the first frame update
     private Goal[] goalsScripts;
     private bool goalFlags;
+    private bool instantFlag = false;
+    private int sceneNum ;
+    public GameObject clearLogo;
+
+    private float intervalTime = 4.0f;
+
     void Start()
     {
+        sceneNum = SceneManager.GetActiveScene().buildIndex;
         //すべてのゴールスクリプトの取得
         goalsScripts = Goal.FindObjectsOfType<Goal>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void GoalCheck(){
         goalFlags = true;
         foreach(Goal goalScript in goalsScripts){
             goalFlags &= goalScript.returnGoalFlag();
         }
 
-        if(goalFlags) Debug.Log("全部ゴール!");
+    }
+
+    void Update()
+    {
+        GoalCheck();
+        if(goalFlags&&!instantFlag){
+            Instantiate(clearLogo,new Vector3(0,0,0),Quaternion.identity);
+            Invoke("GoToNextScene",intervalTime);
+            instantFlag = true;
+        }
+    }
+
+    void GoToNextScene(){
+        SceneManager.LoadScene(sceneNum+1);    
     }
 }

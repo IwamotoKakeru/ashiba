@@ -9,12 +9,15 @@ public class Goal : MonoBehaviour
 
     public int goalNumGetter = 1;
     private int goalNum = 1;
+    private NumDisplay numDisplay;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = this.gameObject.GetComponent<AudioSource>();
+        numDisplay = GetComponentInChildren<NumDisplay>();
         goalNum = goalNumGetter;
+        numDisplay.DisplayNum(goalNum);
     }
 
     public int returnGoalNum(){
@@ -38,6 +41,7 @@ public class Goal : MonoBehaviour
                 Destroy(collision.gameObject);
                 audioSource.PlayOneShot(goal);
                 if(goalNum == 0) Debug.Log("全体ゴール");
+                numDisplay.DisplayNum(goalNum);
             }
         
     }
