@@ -18,10 +18,11 @@ public class generator : MonoBehaviour
     {
         MaxPlayer = MaxPlayerGetter;
         numDisplay = GetComponentInChildren<NumDisplay>();
+        
     }
     void Start()
     {
-        numDisplay.DisplayNum(MaxPlayer);
+       numDisplay.DisplayNum(MaxPlayerGetter);
     }
 
     // Update is called once per frame
