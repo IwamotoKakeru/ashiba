@@ -673,10 +673,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 45e7a641-67b2-4d10-9e03-7560a33392d5
+  cloudProjectId: 8a75d52f-edce-4404-9c76-81552cbb1cb8
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Unity1Week2 (1)
+  organizationId: dr_hakase
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
