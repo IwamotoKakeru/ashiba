@@ -7,11 +7,9 @@ using UnityEngine.UI;
 public class EndRollScript : MonoBehaviour
 {
     //　テキストのスクロールスピード
-    [SerializeField]
-    private float textScrollSpeed = 30;
+    private float textScrollSpeed = 100f;
     //　テキストの制限位置
-    [SerializeField]
-    private float limitPosition = 730f;
+    private float limitPosition = 1458f;
     //　エンドロールが終了したかどうか
     private bool isStopEndRoll;
     //　シーン移動用コルーチン
