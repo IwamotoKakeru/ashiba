@@ -6,42 +6,88 @@ using UnityEngine.UI;
 
 public class EndRollScript : MonoBehaviour
 {
-    //　テキストのスクロールスピード
-    private float textScrollSpeed = 100f;
-    //　テキストの制限位置
-    private float limitPosition = 1458f;
-    //　エンドロールが終了したかどうか
-    private bool isStopEndRoll;
-    //　シーン移動用コルーチン
-    private Coroutine endRollCoroutine;
-    public GameObject logo;
+    public GameObject Logo;
+    private bool LogoFlag=false;
+
+    private Text tex;
+
+    private int state=0;
+    private float interval=6.0f;
+    private float time = 5.0f;
+
+    private string end = "おわり";
+    private string staff1 = "スタッフ\n＜　けーる　＞\nグラフィック\nプログラミング";
+    private string staff2 = "スタッフ\n＜　アダ　＞\nサウンド\nプログラミング";
+    private string staff3 = "スタッフ\n＜　酢酸カーミン　＞\nプログラミング\nステージ制作";
+    private string se =     "スタッフ\n＜　chouette  ＞\nプログラミング\nステージ制作\nデバッグ";
+    private string company = "九州工業大学\nプログラミング研究会";
+
+    private Vector3 logPos= new Vector3(0.0f,1.6f,0.0f);
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        tex = GetComponent<Text>(); 
+        Invoke("nextState",time);
+        time += interval;
+        Invoke("nextState",time);
+        time += interval;
+        Invoke("nextState",time);
+        time += interval;
+        Invoke("nextState",time);
+        time += interval;
+        Invoke("nextState",time);
+        time += interval*3;
+        Invoke("nextState",time);
+    }
+
+    void ChangeText(string str){
+        tex.text = str;
+    }
+
+    void nextState(){
+        state++;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        //　エンドロールが終了した時
-        if (isStopEndRoll) {
-            endRollCoroutine = StartCoroutine(GoToNextScene());
-        } else {
-            //　エンドロール用テキストがリミットを越えるまで動かす
-            if (transform.position.y <= limitPosition) {
-                transform.position = new Vector2(transform.position.x, transform.position.y + textScrollSpeed * Time.deltaTime);
-            } else {
-                isStopEndRoll = true;
-                Instantiate(logo,new Vector3(0,1.0f,0),Quaternion.identity);
-            }
+        switch (state)
+        {
+            case 0:
+                tex.text = end;
+                break;
+
+            case 1:
+                tex.text = staff1;
+                break;
+
+            case 2:
+                tex.text = staff2;
+                break;
+
+            case 3:
+                tex.text = staff3;
+                break;
+            
+            case 4:
+                tex.text = se;
+                break;
+            
+            case 5:
+                if(!LogoFlag){
+                    Instantiate(Logo,logPos,Quaternion.identity);
+                    LogoFlag = true;
+                } 
+                tex.text = company;
+                break;
+            
+            case 6:
+                SceneManager.LoadScene("title");
+                break;
+
+            default:
+                break;
         }
-    }
-
-    IEnumerator GoToNextScene() {
-        //　5秒間待つ
-        yield return new WaitForSeconds(5f);
-
-        if(Input.GetMouseButtonDown(0)) {
-            StopCoroutine(endRollCoroutine);
-            SceneManager.LoadScene(0);
-        }
-
-        yield return null;
     }
 }

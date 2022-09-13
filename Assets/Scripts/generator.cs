@@ -33,7 +33,7 @@ public class generator : MonoBehaviour
         {
             if (collision.gameObject.CompareTag(cursorTag))
             {
-                Instantiate(Square, this.transform.position + new Vector3(0, -1.0f, 0), Quaternion.identity);
+                Instantiate(Square, this.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
                 numOfPlayer += 1;
                 numDisplay.DisplayNum(MaxPlayer - numOfPlayer);
             }
