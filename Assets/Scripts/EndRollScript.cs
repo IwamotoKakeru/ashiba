@@ -7,45 +7,47 @@ using UnityEngine.UI;
 public class EndRollScript : MonoBehaviour
 {
     public GameObject Logo;
-    private bool LogoFlag=false;
+    private bool LogoFlag = false;
 
     private Text tex;
 
-    private int state=0;
-    private float interval=6.0f;
+    private int state = 0;
+    private float interval = 6.0f;
     private float time = 5.0f;
 
     private string end = "おわり";
     private string staff1 = "スタッフ\n＜　けーる　＞\nグラフィック\nプログラミング";
     private string staff2 = "スタッフ\n＜　アダ　＞\nサウンド\nプログラミング";
     private string staff3 = "スタッフ\n＜　酢酸カーミン　＞\nプログラミング\nステージ制作";
-    private string se =     "スタッフ\n＜　chouette  ＞\nプログラミング\nステージ制作\nデバッグ";
+    private string se = "スタッフ\n＜　chouette  ＞\nプログラミング\nステージ制作\nデバッグ";
     private string company = "九州工業大学\nプログラミング研究会";
 
-    private Vector3 logPos= new Vector3(0.0f,1.6f,0.0f);
+    private Vector3 logPos = new Vector3(0.0f, 1.6f, 0.0f);
 
     // Start is called before the first frame update
     void Start()
     {
-        tex = GetComponent<Text>(); 
-        Invoke("nextState",time);
+        tex = GetComponent<Text>();
+        Invoke("nextState", time);
         time += interval;
-        Invoke("nextState",time);
+        Invoke("nextState", time);
         time += interval;
-        Invoke("nextState",time);
+        Invoke("nextState", time);
         time += interval;
-        Invoke("nextState",time);
+        Invoke("nextState", time);
         time += interval;
-        Invoke("nextState",time);
-        time += interval*3;
-        Invoke("nextState",time);
+        Invoke("nextState", time);
+        time += interval * 3;
+        Invoke("nextState", time);
     }
 
-    void ChangeText(string str){
+    void ChangeText(string str)
+    {
         tex.text = str;
     }
 
-    void nextState(){
+    void nextState()
+    {
         state++;
     }
 
@@ -69,19 +71,20 @@ public class EndRollScript : MonoBehaviour
             case 3:
                 tex.text = staff3;
                 break;
-            
+
             case 4:
                 tex.text = se;
                 break;
-            
+
             case 5:
-                if(!LogoFlag){
-                    Instantiate(Logo,logPos,Quaternion.identity);
+                if (!LogoFlag)
+                {
+                    Instantiate(Logo, logPos, Quaternion.identity);
                     LogoFlag = true;
-                } 
+                }
                 tex.text = company;
                 break;
-            
+
             case 6:
                 SceneManager.LoadScene("title");
                 break;

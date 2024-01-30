@@ -20,29 +20,31 @@ public class Goal : MonoBehaviour
         numDisplay.DisplayNum(goalNumGetter);
     }
 
-    public int returnGoalNum(){
+    public int returnGoalNum()
+    {
         return goalNum;
     }
 
     // Update is called once per frame
 
-    public bool returnGoalFlag(){
-        if(goalNum == 0)    return true;
-        else                return false;
+    public bool returnGoalFlag()
+    {
+        if (goalNum == 0) return true;
+        else return false;
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-       
-            if (collision.gameObject.CompareTag("Player"))
-            {
-                goalNum --;
-                Debug.Log("1体ゴール");
-                Destroy(collision.gameObject);
-                audioSource.PlayOneShot(goal);
-                if(goalNum == 0) Debug.Log("全体ゴール");
-                numDisplay.DisplayNum(goalNum);
-            }
-        
+
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            goalNum--;
+            Debug.Log("1体ゴール");
+            Destroy(collision.gameObject);
+            audioSource.PlayOneShot(goal);
+            if (goalNum == 0) Debug.Log("全体ゴール");
+            numDisplay.DisplayNum(goalNum);
+        }
+
     }
 }

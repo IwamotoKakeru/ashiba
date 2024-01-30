@@ -13,11 +13,13 @@ public class NumDisplay : MonoBehaviour
         textMesh = GetComponent<TextMesh>();
     }
 
-    public void DisplayNum(int numGetter){
+    public void DisplayNum(int numGetter)
+    {
         num = numGetter;
     }
 
-    void Update(){
+    void Update()
+    {
         textMesh.text = num.ToString("0");
     }
 

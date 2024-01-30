@@ -10,7 +10,7 @@ public class generator : MonoBehaviour
     public GameObject Square;
     private NumDisplay numDisplay;
     public int MaxPlayerGetter = 3;
-    private int MaxPlayer =1;
+    private int MaxPlayer = 1;
     private int numOfPlayer = 0;
     private string cursorTag = "GameController";
     // Start is called before the first frame update
@@ -18,18 +18,18 @@ public class generator : MonoBehaviour
     {
         MaxPlayer = MaxPlayerGetter;
         numDisplay = GetComponentInChildren<NumDisplay>();
-        
+
     }
     void Start()
     {
-       numDisplay.DisplayNum(MaxPlayerGetter);
+        numDisplay.DisplayNum(MaxPlayerGetter);
     }
 
     // Update is called once per frame
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(numOfPlayer<MaxPlayer)
+        if (numOfPlayer < MaxPlayer)
         {
             if (collision.gameObject.CompareTag(cursorTag))
             {

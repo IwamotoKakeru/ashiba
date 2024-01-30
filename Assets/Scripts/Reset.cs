@@ -9,7 +9,7 @@ public class Reset : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class Reset : MonoBehaviour
     {
         if (collision.gameObject.CompareTag(cursorTag))
         {
-           SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }

@@ -9,11 +9,11 @@ public class GoalGeneral : MonoBehaviour
     private Goal[] goalsScripts;
     private bool goalFlags;
     private bool instantFlag = false;
-    private int sceneNum ;
+    private int sceneNum;
     public GameObject clearLogo;
 
     private float intervalTime = 4.0f;
-    private float fastScale=4.0f;
+    private float fastScale = 4.0f;
 
     void Start()
     {
@@ -22,9 +22,11 @@ public class GoalGeneral : MonoBehaviour
         goalsScripts = Goal.FindObjectsOfType<Goal>();
     }
 
-    void GoalCheck(){
+    void GoalCheck()
+    {
         goalFlags = true;
-        foreach(Goal goalScript in goalsScripts){
+        foreach (Goal goalScript in goalsScripts)
+        {
             goalFlags &= goalScript.returnGoalFlag();
         }
 
@@ -33,19 +35,24 @@ public class GoalGeneral : MonoBehaviour
     void Update()
     {
         GoalCheck();
-        if(goalFlags&&!instantFlag){
-            Instantiate(clearLogo,new Vector3(0,0,0),Quaternion.identity);
-            Invoke("GoToNextScene",intervalTime);
+        if (goalFlags && !instantFlag)
+        {
+            Instantiate(clearLogo, new Vector3(0, 0, 0), Quaternion.identity);
+            Invoke("GoToNextScene", intervalTime);
             instantFlag = true;
         }
-        if(Input.GetMouseButton(1)){
+        if (Input.GetMouseButton(1))
+        {
             Time.timeScale = fastScale;
-        }else{
+        }
+        else
+        {
             Time.timeScale = 1.0f;
         }
     }
 
-    void GoToNextScene(){
-        SceneManager.LoadScene(sceneNum+1);    
+    void GoToNextScene()
+    {
+        SceneManager.LoadScene(sceneNum + 1);
     }
 }

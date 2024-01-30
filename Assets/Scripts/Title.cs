@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Title : MonoBehaviour
 {
-    private int sceneNum ;
+    private int sceneNum;
     void Start()
     {
         sceneNum = SceneManager.GetActiveScene().buildIndex;
@@ -14,8 +14,9 @@ public class Title : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButtonDown(0)){
-            sceneNum ++;
+        if (Input.GetMouseButtonDown(0))
+        {
+            sceneNum++;
             SceneManager.LoadScene(sceneNum);
         }
     }

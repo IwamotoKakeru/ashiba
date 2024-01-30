@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Square: MonoBehaviour
+public class Square : MonoBehaviour
 {
     private string cursorTag = "GameController";
 
@@ -15,7 +15,7 @@ public class Square: MonoBehaviour
     private AudioSource audioSC;
 
     //GameObjects
-    public GroundCheck ground,ceiling;
+    public GroundCheck ground, ceiling;
     public GameObject corpse;
     private float gravity = 4.0f;
 
@@ -28,13 +28,13 @@ public class Square: MonoBehaviour
     private bool isCeiling = false;
 
     //Jump variables
-    private float jumpPos = 0.0f;   
-    private float jumpHeight = 1.2f;   
+    private float jumpPos = 0.0f;
+    private float jumpHeight = 1.2f;
     private float jumpTime = 0.0f;
     private float jumpMaxTime = 1.0f;
     public AnimationCurve jumpCurve;
 
-    private float xSpeed,ySpeed;
+    private float xSpeed, ySpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -44,82 +44,100 @@ public class Square: MonoBehaviour
         audioSC = GetComponent<AudioSource>();
     }
 
-    public void Initialize(){
+    public void Initialize()
+    {
         isGround = ground.IsGround();
         isCeiling = ceiling.IsGround();
         xSpeed = 0.0f;
-        if(isGround)    ySpeed = 0.0f;
-        else            ySpeed = -gravity;
+        if (isGround) ySpeed = 0.0f;
+        else ySpeed = -gravity;
     }
 
-    public void Walk(float walkInput){
-        if(walkInput>0.0f){
+    public void Walk(float walkInput)
+    {
+        if (walkInput > 0.0f)
+        {
             xSpeed = walkSpeed;
-            transform.localScale = new Vector3(1,1,1);
+            transform.localScale = new Vector3(1, 1, 1);
             isWalk = true;
         }
-        else if(walkInput<0.0f){
+        else if (walkInput < 0.0f)
+        {
             xSpeed = -walkSpeed;
-            transform.localScale = new Vector3(-1,1,1);
+            transform.localScale = new Vector3(-1, 1, 1);
             isWalk = true;
         }
-        else{
+        else
+        {
             xSpeed = 0.0f;
             isWalk = false;
         }
-        anim.SetBool("walk",isWalk);
+        anim.SetBool("walk", isWalk);
         rb.velocity = new Vector2(xSpeed, rb.velocity.y);
     }
 
-    public void jump(float jumpInput){
+    public void jump(float jumpInput)
+    {
 
-        if(isGround && jumpInput>0.0f &&!isJump) audioSC.PlayOneShot(jumpSE);
+        if (isGround && jumpInput > 0.0f && !isJump) audioSC.PlayOneShot(jumpSE);
 
-        if(isGround){
-            if (jumpInput>0){
+        if (isGround)
+        {
+            if (jumpInput > 0)
+            {
                 ySpeed = jumpSpeed;
                 jumpPos = transform.position.y;
                 isJump = true;
                 jumpTime = 0.0f;
             }
-            else{
+            else
+            {
                 isJump = false;
             }
-        }else if(isJump){
-            if(jumpInput > 0 && jumpHeight > transform.position.y - jumpPos && !isCeiling && jumpMaxTime>jumpTime){
+        }
+        else if (isJump)
+        {
+            if (jumpInput > 0 && jumpHeight > transform.position.y - jumpPos && !isCeiling && jumpMaxTime > jumpTime)
+            {
                 ySpeed = jumpSpeed;
                 jumpTime += Time.deltaTime;
             }
-            else{
+            else
+            {
                 isJump = false;
                 jumpTime = 0.0f;
             }
         }
-        if(isJump)  ySpeed *= jumpCurve.Evaluate(jumpTime);
-        anim.SetBool("isGround",isGround);
+        if (isJump) ySpeed *= jumpCurve.Evaluate(jumpTime);
+        anim.SetBool("isGround", isGround);
         rb.velocity = new Vector2(rb.velocity.x, ySpeed);
     }
 
-    private float NumericRounder(float value){
+    private float NumericRounder(float value)
+    {
         //小数点以下のみ取り出し
         float decimicalVal = value % 1;
 
-        if(decimicalVal == 0.5f){
+        if (decimicalVal == 0.5f)
+        {
             return value;
-        }else{
-            return Mathf.Floor(value)+0.5f;
+        }
+        else
+        {
+            return Mathf.Floor(value) + 0.5f;
         }
     }
 
     //死体を丁度いい位置に生成する関数
-    void RoundPositonInstantiate(){
+    void RoundPositonInstantiate()
+    {
 
         Vector3 instantPosition = transform.position;
         instantPosition.x = NumericRounder(instantPosition.x);
         instantPosition.y = NumericRounder(instantPosition.y);
 
-        Instantiate(corpse,instantPosition,Quaternion.identity);
-        
+        Instantiate(corpse, instantPosition, Quaternion.identity);
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -130,15 +148,5 @@ public class Square: MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    /*
-    void FixedUpdate()
-    {
-        Initialize();
-
-        Walk(Input.GetAxisRaw("Horizontal"));
-        jump(Input.GetAxis("Vertical"));
-
-    }
-    */
 
 }
