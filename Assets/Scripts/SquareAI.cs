@@ -12,39 +12,41 @@ enum State
 
 public class SquareAI : MonoBehaviour
 {
-    // Start is called before the first frame update
     private State currentState = State.Walking;
     private bool alongWallFlag = false;
-    private float walkSpeed = 1.0f;
-    private float jumpSpeed = 1.0f;
+    private float walkDirection = 1.0f;
+    private float walkVelocity = 1.0f;
+    private readonly float walkInput = 1.0f;
+    private readonly float jumpInput = 1.0f;
 
 
     Square Sq;
     public GroundCheck ground, ceiling, wall;
 
-    private bool isGround, isCeiling, isWall;
+    private bool isGround, isWall;
 
     void Start()
     {
         Sq = gameObject.GetComponent<Square>();
     }
 
-    void InitializeFlag()
+    void Initialize()
     {
+        walkVelocity = walkDirection * walkInput;
         isGround = ground.IsGround();
-        isCeiling = ceiling.IsGround();
         isWall = wall.IsGround();
         Sq.Initialize();
     }
 
-    void FixedUpdate()
+    /// <summary>
+    /// 壁まで歩き、壁に当たるとジャンプし、飛び越えられなければ反転する
+    /// </summary>
+    void WalkAndJumpProgress()
     {
-        InitializeFlag();
-
         switch (currentState)
         {
             case State.Walking:
-                Sq.Walk(walkSpeed);
+                Sq.Walk(walkVelocity);
                 Sq.Jump(0.0f);
 
                 // 壁に接したら
@@ -57,14 +59,14 @@ public class SquareAI : MonoBehaviour
             case State.Jumping:
                 // 真上にジャンプ
                 Sq.Walk(0.0f);
-                Sq.Jump(jumpSpeed);
+                Sq.Jump(jumpInput);
                 if (isWall && !isGround) alongWallFlag = true;
 
                 // 壁がなければ右入力しながらジャンプ
                 if (!isWall)
                 {
-                    Sq.Walk(walkSpeed);
-                    Sq.Jump(jumpSpeed);
+                    Sq.Walk(walkVelocity);
+                    Sq.Jump(jumpInput);
                     // 接地したら再び歩く
                     if (isGround)
                     {
@@ -76,10 +78,9 @@ public class SquareAI : MonoBehaviour
                 else if (isGround && isWall && alongWallFlag)
                 {
                     alongWallFlag = false;
-                    walkSpeed = -walkSpeed;
+                    walkDirection = -walkDirection;
                     currentState = State.Walking;
                 }
-
                 break;
 
             case State.Falling:
@@ -93,5 +94,11 @@ public class SquareAI : MonoBehaviour
                 //nothing
                 break;
         }
+    }
+
+    void FixedUpdate()
+    {
+        Initialize();
+        WalkAndJumpProgress();
     }
 }
