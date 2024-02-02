@@ -37,19 +37,6 @@ public class SquareAI : MonoBehaviour
         Sq.Initialize();
     }
 
-    // Update is called once per frame
-
-    void walking(float walkSpeed)
-    {
-        Sq.Walk(walkSpeed);
-        Sq.jump(0.0f);
-
-        // 壁に接したら
-        if (isWall) currentState = State.Jumping;
-
-        // 空中にいるとき
-        if (!isGround) currentState = State.Falling;
-    }
     void FixedUpdate()
     {
         InitializeFlag();
