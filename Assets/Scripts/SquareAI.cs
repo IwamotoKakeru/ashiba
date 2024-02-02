@@ -45,7 +45,7 @@ public class SquareAI : MonoBehaviour
         {
             case State.Walking:
                 Sq.Walk(walkSpeed);
-                Sq.jump(0.0f);
+                Sq.Jump(0.0f);
 
                 // 壁に接したら
                 if (isWall) currentState = State.Jumping;
@@ -57,14 +57,14 @@ public class SquareAI : MonoBehaviour
             case State.Jumping:
                 // 真上にジャンプ
                 Sq.Walk(0.0f);
-                Sq.jump(jumpSpeed);
+                Sq.Jump(jumpSpeed);
                 if (isWall && !isGround) alongWallFlag = true;
 
                 // 壁がなければ右入力しながらジャンプ
                 if (!isWall)
                 {
                     Sq.Walk(walkSpeed);
-                    Sq.jump(jumpSpeed);
+                    Sq.Jump(jumpSpeed);
                     // 接地したら再び歩く
                     if (isGround)
                     {
@@ -84,7 +84,7 @@ public class SquareAI : MonoBehaviour
 
             case State.Falling:
                 Sq.Walk(0.0f);
-                Sq.jump(0.0f);
+                Sq.Jump(0.0f);
                 // 接地したら歩く
                 if (isGround) currentState = State.Walking;
                 break;

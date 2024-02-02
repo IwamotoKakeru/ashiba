@@ -17,26 +17,26 @@ public class Square : MonoBehaviour
     //GameObjects
     public GroundCheck ground, ceiling;
     public GameObject corpse;
+
     private float gravity = 4.0f;
 
     private float walkSpeed = 2.0f;
     private float jumpSpeed = 3.0f;
 
     private bool isWalk = false;
-    private bool isJump = false;
+    private bool isJumping = false;
     private bool isGround = false;
     private bool isCeiling = false;
 
     //Jump variables
     private float jumpPos = 0.0f;
-    private float jumpHeight = 1.2f;
+    private float maxJumpHeight = 1.2f;
     private float jumpTime = 0.0f;
-    private float jumpMaxTime = 1.0f;
+    private float maxJumpTime = 1.0f;
     public AnimationCurve jumpCurve;
 
     private float xSpeed, ySpeed;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -44,6 +44,10 @@ public class Square : MonoBehaviour
         audioSC = GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// Squareの初期化を行う
+    /// Squareを使用する際にUpdateの始めに必ず呼び出す
+    /// </summary>
     public void Initialize()
     {
         isGround = ground.IsGround();
@@ -53,6 +57,10 @@ public class Square : MonoBehaviour
         else ySpeed = -gravity;
     }
 
+    /// <summary>
+    /// Squareを歩行させる
+    /// </summary>
+    /// <param name="walkInput">正なら右方向、負なら左方向、0なら静止</param>
     public void Walk(float walkInput)
     {
         if (walkInput > 0.0f)
@@ -76,39 +84,48 @@ public class Square : MonoBehaviour
         rb.velocity = new Vector2(xSpeed, rb.velocity.y);
     }
 
-    public void jump(float jumpInput)
+    /// <summary>
+    /// Squareをジャンプさせる
+    /// JumpHeightまでジャンプした後は接地するまで下降する
+    /// ジャンプボタンでジャンプしている感覚に近い
+    /// </summary>
+    /// <param name="jumpInput">正ならジャンプ動作を行う</param>
+    public void Jump(float jumpInput)
     {
 
-        if (isGround && jumpInput > 0.0f && !isJump) audioSC.PlayOneShot(jumpSE);
+        if (isGround && jumpInput > 0.0f && !isJumping) audioSC.PlayOneShot(jumpSE);
 
+        // 地上にいる際
         if (isGround)
         {
             if (jumpInput > 0)
             {
                 ySpeed = jumpSpeed;
                 jumpPos = transform.position.y;
-                isJump = true;
+                isJumping = true;
                 jumpTime = 0.0f;
             }
             else
             {
-                isJump = false;
+                isJumping = false;
             }
         }
-        else if (isJump)
+        // 空中にいる際
+        else if (isJumping)
         {
-            if (jumpInput > 0 && jumpHeight > transform.position.y - jumpPos && !isCeiling && jumpMaxTime > jumpTime)
+            float jumpHeight = transform.position.y - jumpPos;
+            if (jumpInput > 0 && maxJumpHeight > jumpHeight && !isCeiling && maxJumpTime > jumpTime)
             {
                 ySpeed = jumpSpeed;
                 jumpTime += Time.deltaTime;
             }
             else
             {
-                isJump = false;
+                isJumping = false;
                 jumpTime = 0.0f;
             }
         }
-        if (isJump) ySpeed *= jumpCurve.Evaluate(jumpTime);
+        if (isJumping) ySpeed *= jumpCurve.Evaluate(jumpTime);
         anim.SetBool("isGround", isGround);
         rb.velocity = new Vector2(rb.velocity.x, ySpeed);
     }
@@ -140,6 +157,7 @@ public class Square : MonoBehaviour
 
     }
 
+    // クリックされた際の挙動
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(cursorTag))
