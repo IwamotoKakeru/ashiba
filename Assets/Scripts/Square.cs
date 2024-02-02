@@ -15,7 +15,7 @@ public class Square : MonoBehaviour
     private AudioSource audioSC;
 
     //GameObjects
-    public GroundCheck ground, ceiling;
+    public TouchChecker ground, ceiling;
     public GameObject corpse;
 
     private float gravity = 4.0f;
@@ -50,8 +50,8 @@ public class Square : MonoBehaviour
     /// </summary>
     public void Initialize()
     {
-        isGround = ground.IsGround();
-        isCeiling = ceiling.IsGround();
+        isGround = ground.IsTouching();
+        isCeiling = ceiling.IsTouching();
         xSpeed = 0.0f;
         if (isGround) ySpeed = 0.0f;
         else ySpeed = -gravity;

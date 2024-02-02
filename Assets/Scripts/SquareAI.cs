@@ -21,7 +21,7 @@ public class SquareAI : MonoBehaviour
 
 
     Square Sq;
-    public GroundCheck ground, ceiling, wall;
+    public TouchChecker ground, ceiling, wall;
 
     private bool isGround, isWall;
 
@@ -33,8 +33,8 @@ public class SquareAI : MonoBehaviour
     void Initialize()
     {
         walkVelocity = walkDirection * walkInput;
-        isGround = ground.IsGround();
-        isWall = wall.IsGround();
+        isGround = ground.IsTouching();
+        isWall = wall.IsTouching();
         Sq.Initialize();
     }
 
