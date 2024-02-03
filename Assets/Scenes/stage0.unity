@@ -232,6 +232,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
         type: 3}
+      propertyPath: MaxGenerateNum
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
+        type: 3}
       propertyPath: MaxPlayerGetter
       value: 6
       objectReference: {fileID: 0}
@@ -432,6 +437,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ResetButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159224595862995119, guid: f6edfe72c94e18a459dab76932bfafb9,
+        type: 3}
+      propertyPath: hoverColor.b
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159224595862995119, guid: f6edfe72c94e18a459dab76932bfafb9,
+        type: 3}
+      propertyPath: hoverColor.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159224595862995119, guid: f6edfe72c94e18a459dab76932bfafb9,
+        type: 3}
+      propertyPath: hoverColor.r
+      value: 0.74509805
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6edfe72c94e18a459dab76932bfafb9, type: 3}

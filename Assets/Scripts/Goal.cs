@@ -17,7 +17,7 @@ public class Goal : MonoBehaviour
         audioSource = this.gameObject.GetComponent<AudioSource>();
         numDisplay = GetComponentInChildren<NumDisplay>();
         goalNum = goalNumGetter;
-        numDisplay.DisplayNum(goalNumGetter);
+        numDisplay.ChangeNum(goalNumGetter);
     }
 
     public int returnGoalNum()
@@ -43,7 +43,7 @@ public class Goal : MonoBehaviour
             Destroy(collision.gameObject);
             audioSource.PlayOneShot(goal);
             if (goalNum == 0) Debug.Log("全体ゴール");
-            numDisplay.DisplayNum(goalNum);
+            numDisplay.ChangeNum(goalNum);
         }
 
     }

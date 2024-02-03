@@ -31,6 +31,10 @@ public class TouchChecker : MonoBehaviour
         if (collision.CompareTag(ObjectTag)) exitFlag = true;
     }
 
+    /// <summary>
+    /// 触れているかどうかを取得する
+    /// </summary>
+    /// <returns>触れているなら真</returns>
     public bool IsTouching()
     {
         if (enterFlag || stayFlag) isTouch = true;

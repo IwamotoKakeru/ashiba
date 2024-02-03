@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class NumDisplay : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     private TextMesh textMesh;
     private int num;
     void Start()
@@ -13,9 +11,13 @@ public class NumDisplay : MonoBehaviour
         textMesh = GetComponent<TextMesh>();
     }
 
-    public void DisplayNum(int numGetter)
+    /// <summary>
+    /// 表示する数字を変更する
+    /// </summary>
+    /// <param name="displayNum">表示する数字</param>
+    public void ChangeNum(int displayNum)
     {
-        num = numGetter;
+        num = displayNum;
     }
 
     void Update()

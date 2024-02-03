@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    //public GameObject reticle;
     Collider2D cursorCollider;
     private Vector3 mousePosition, target;
 

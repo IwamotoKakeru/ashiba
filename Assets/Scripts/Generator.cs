@@ -2,40 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
-public class generator : MonoBehaviour
+public class Generator : MonoBehaviour
 {
     public GameObject Square;
     private NumDisplay numDisplay;
-    public int MaxPlayerGetter = 3;
-    private int MaxPlayer = 1;
-    private int numOfPlayer = 0;
+
+    // インスペクタから取得するため自動実装プロパティのように扱う
+    public int MaxGenerateNum = 3;
+    private int maxGenerateNum = 1;
+    private int generatedNum = 0;
     private string cursorTag = "GameController";
-    // Start is called before the first frame update
     void Awake()
     {
-        MaxPlayer = MaxPlayerGetter;
+        maxGenerateNum = MaxGenerateNum;
         numDisplay = GetComponentInChildren<NumDisplay>();
-
     }
+
     void Start()
     {
-        numDisplay.DisplayNum(MaxPlayerGetter);
+        numDisplay.ChangeNum(MaxGenerateNum);
     }
-
-    // Update is called once per frame
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (numOfPlayer < MaxPlayer)
+        if (generatedNum < maxGenerateNum)
         {
             if (collision.gameObject.CompareTag(cursorTag))
             {
                 Instantiate(Square, this.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
-                numOfPlayer += 1;
-                numDisplay.DisplayNum(MaxPlayer - numOfPlayer);
+                generatedNum += 1;
+                numDisplay.ChangeNum(maxGenerateNum - generatedNum);
             }
         }
     }
