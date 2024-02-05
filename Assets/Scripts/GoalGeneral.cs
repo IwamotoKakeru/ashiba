@@ -13,13 +13,12 @@ public class GoalGeneral : MonoBehaviour
     public GameObject clearLogo;
 
     private float intervalTime = 4.0f;
-    private float fastScale = 4.0f;
 
     void Start()
     {
         sceneNum = SceneManager.GetActiveScene().buildIndex;
         //すべてのゴールスクリプトの取得
-        goalsScripts = Goal.FindObjectsOfType<Goal>();
+        goalsScripts = FindObjectsOfType<Goal>();
     }
 
     void GoalCheck()
@@ -40,14 +39,6 @@ public class GoalGeneral : MonoBehaviour
             Instantiate(clearLogo, new Vector3(0, 0, 0), Quaternion.identity);
             Invoke("GoToNextScene", intervalTime);
             instantFlag = true;
-        }
-        if (Input.GetMouseButton(1))
-        {
-            Time.timeScale = fastScale;
-        }
-        else
-        {
-            Time.timeScale = 1.0f;
         }
     }
 
