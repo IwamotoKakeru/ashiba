@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Constants;
 using UnityEngine;
 
 /// <summary>
@@ -7,12 +8,10 @@ using UnityEngine;
 /// </summary>
 public class TouchChecker : MonoBehaviour
 {
-    private string objectTag = "Block";
-
     /// <summary>
     /// ObjectTagが返すタグをoverrideすることで他のタグに対応可能
     /// </summary>
-    public virtual string ObjectTag => objectTag;
+    public virtual string ObjectTag => Tags.Block;
     private bool enterFlag, stayFlag, exitFlag;
     private bool isTouch = false;
 

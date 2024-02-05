@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Constants;
 
 public class Square : MonoBehaviour
 {
-    private string cursorTag = "GameController";
 
     //AudioCrips   
     public AudioClip jumpSE;
@@ -160,10 +160,10 @@ public class Square : MonoBehaviour
     // クリックされた際の挙動
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag(cursorTag))
+        if (collision.gameObject.CompareTag(Tags.Cursor))
         {
             RoundPositonInstantiate();
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 

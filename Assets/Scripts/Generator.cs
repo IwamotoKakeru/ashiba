@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Constants;
 
 public class Generator : MonoBehaviour
 {
@@ -11,7 +12,6 @@ public class Generator : MonoBehaviour
     public int MaxGenerateNum = 3;
     private int maxGenerateNum = 1;
     private int generatedNum = 0;
-    private string cursorTag = "GameController";
     void Awake()
     {
         maxGenerateNum = MaxGenerateNum;
@@ -27,7 +27,7 @@ public class Generator : MonoBehaviour
     {
         if (generatedNum < maxGenerateNum)
         {
-            if (collision.gameObject.CompareTag(cursorTag))
+            if (collision.gameObject.CompareTag(Tags.Cursor))
             {
                 Instantiate(Square, this.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
                 generatedNum += 1;
