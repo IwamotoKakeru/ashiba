@@ -93,8 +93,11 @@ public class Square : MonoBehaviour
     public void Jump(float jumpInput)
     {
 
-        if (isGround && jumpInput > 0.0f && !isJumping) audioSC.PlayOneShot(jumpSE);
-
+        if (isGround && jumpInput > 0.0f && !isJumping)
+        {
+            audioSC.PlayOneShot(jumpSE);
+            Debug.Log("In Square");
+        }
         // 地上にいる際
         if (isGround)
         {

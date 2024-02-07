@@ -10,7 +10,12 @@ public class TimeCtrl : MonoBehaviour
     [SerializeField] private float fastTimeScale = 4.0f;
     void Update()
     {
-        if (Input.GetMouseButton(1))
+        ToggleTimeScale(Input.GetMouseButton(1));
+    }
+
+    void ToggleTimeScale(bool toggleFlag)
+    {
+        if (toggleFlag)
         {
             Time.timeScale = fastTimeScale;
         }
