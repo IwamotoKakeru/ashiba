@@ -41,10 +41,10 @@ public class EndRollScript : MonoBehaviour
         ChangeText(staff3);
         yield return new WaitForSeconds(intervalSecond);
         ChangeText(se);
-        yield return new WaitForSeconds(intervalSecond * 3);
+        yield return new WaitForSeconds(intervalSecond);
         Instantiate(Logo, logoPos, Quaternion.identity);
         ChangeText(company);
-        yield return new WaitForSeconds(intervalSecond);
+        yield return new WaitForSeconds(intervalSecond * 3);
         SceneManager.LoadScene("title");
     }
 }
