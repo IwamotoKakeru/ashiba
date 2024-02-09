@@ -1,25 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Constants;
 using UnityEngine;
 
+/// <summary>
+/// 画面外にでたオブジェクトを削除する
+/// </summary>
 public class Destroyer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnTriggerExit2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (!collision.gameObject.CompareTag(Tags.Cursor))
         {
             Destroy(collision.gameObject);
             Debug.Log("消滅");

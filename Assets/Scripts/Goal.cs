@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Constants;
 
 public class Goal : MonoBehaviour
 {
@@ -17,7 +18,7 @@ public class Goal : MonoBehaviour
         audioSource = this.gameObject.GetComponent<AudioSource>();
         numDisplay = GetComponentInChildren<NumDisplay>();
         goalNum = goalNumGetter;
-        numDisplay.DisplayNum(goalNumGetter);
+        numDisplay.ChangeNum(goalNumGetter);
     }
 
     public int returnGoalNum()
@@ -25,7 +26,6 @@ public class Goal : MonoBehaviour
         return goalNum;
     }
 
-    // Update is called once per frame
 
     public bool returnGoalFlag()
     {
@@ -36,14 +36,14 @@ public class Goal : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag(Tags.Player))
         {
             goalNum--;
             Debug.Log("1体ゴール");
             Destroy(collision.gameObject);
             audioSource.PlayOneShot(goal);
             if (goalNum == 0) Debug.Log("全体ゴール");
-            numDisplay.DisplayNum(goalNum);
+            numDisplay.ChangeNum(goalNum);
         }
 
     }

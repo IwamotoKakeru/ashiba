@@ -4,6 +4,10 @@ using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
+/// <summary>
+/// MacでWebGLビルドが通らないことへの対策
+/// MacからPython2が削除されたため、Python3へパスを通している
+/// </summary>
 public class MyCustomBuildProcessor : IPreprocessBuildWithReport
 {
     public int callbackOrder => 1;

@@ -232,8 +232,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
         type: 3}
+      propertyPath: MaxGenerateNum
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
+        type: 3}
       propertyPath: MaxPlayerGetter
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 543211082710862602, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
         type: 3}
@@ -432,6 +437,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ResetButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159224595862995119, guid: f6edfe72c94e18a459dab76932bfafb9,
+        type: 3}
+      propertyPath: hoverColor.b
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159224595862995119, guid: f6edfe72c94e18a459dab76932bfafb9,
+        type: 3}
+      propertyPath: hoverColor.g
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159224595862995119, guid: f6edfe72c94e18a459dab76932bfafb9,
+        type: 3}
+      propertyPath: hoverColor.r
+      value: 0.74509805
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6edfe72c94e18a459dab76932bfafb9, type: 3}
@@ -972,6 +992,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1943411898}
   m_CullTransparentMesh: 0
+--- !u!1 &1944162913 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8442521567898519888, guid: 606283617e2f9b245afc3eb8a805f452,
+    type: 3}
+  m_PrefabInstance: {fileID: 1707920252}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1944162918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1944162913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22751750088564ceba64d9334c43e54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fastTimeScale: 6
 --- !u!1 &2030872653
 GameObject:
   m_ObjectHideFlags: 0

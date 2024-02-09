@@ -2,16 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum State
+{
+    Walking,
+    Jumping,
+    Falling,
+
+}
+
 public class SquareAI : MonoBehaviour
 {
-    // Start is called before the first frame update
-    private int state = 1;
-    private bool flag = false;
+    private State currentState = State.Walking;
+    private bool alongWallFlag = false;
+    private float walkDirection = 1.0f;
+    private float walkVelocity = 1.0f;
+    private readonly float walkInput = 1.0f;
+    private readonly float jumpInput = 1.0f;
+
 
     Square Sq;
-    public GroundCheck ground, ceiling, wall;
+    public TouchChecker ground, ceiling, wall;
 
-    private bool isGround, isCeiling, isWall;
+    private bool isGround, isWall;
 
     void Start()
     {
@@ -20,98 +32,73 @@ public class SquareAI : MonoBehaviour
 
     void Initialize()
     {
-        isGround = ground.IsGround();
-        isCeiling = ceiling.IsGround();
-        isWall = wall.IsGround();
+        walkVelocity = walkDirection * walkInput;
+        isGround = ground.IsTouching();
+        isWall = wall.IsTouching();
         Sq.Initialize();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    /// <summary>
+    /// 壁まで歩き、壁に当たるとジャンプし、飛び越えられなければ反転する
+    /// </summary>
+    void WalkAndJumpProgress()
     {
-        Initialize();
-        //Sq.Walk(Input.GetAxisRaw("Horizontal"));
-        //Sq.jump(Input.GetAxis("Vertical"));
-
-        switch (state)
+        switch (currentState)
         {
-            case 1:
-                Sq.Walk(1.0f);
-                Sq.jump(0.0f);
-                if (isWall) state = 2;
-                if (!isGround) state = 5;
+            case State.Walking:
+                Sq.Walk(walkVelocity);
+                Sq.Jump(0.0f);
+
+                // 壁に接したら
+                if (isWall) currentState = State.Jumping;
+
+                // 空中にいるとき
+                if (!isGround) currentState = State.Falling;
                 break;
 
-            case 2:
+            case State.Jumping:
+                // 真上にジャンプ
                 Sq.Walk(0.0f);
-                Sq.jump(1.0f);
-                if (isWall && !isGround) flag = true;
+                Sq.Jump(jumpInput);
+                if (isWall && !isGround) alongWallFlag = true;
 
+                // 壁がなければ右入力しながらジャンプ
                 if (!isWall)
                 {
-                    Sq.Walk(1.0f);
-                    Sq.jump(1.0f);
+                    Sq.Walk(walkVelocity);
+                    Sq.Jump(jumpInput);
+                    // 接地したら再び歩く
                     if (isGround)
                     {
-                        state = 1;
-                        flag = false;
+                        alongWallFlag = false;
+                        currentState = State.Walking;
                     }
                 }
-                else if (isGround && isWall && flag)
+                // ジャンプが終わっても壁があったら反転
+                else if (isGround && isWall && alongWallFlag)
                 {
-                    state = 3;
-                    flag = false;
-                }
-
-                break;
-
-            case 3:
-                Sq.Walk(-1.0f);
-                Sq.jump(0.0f);
-
-                if (isWall) state = 4;
-                if (!isGround) state = 6;
-
-                break;
-
-            case 4:
-                Sq.Walk(0.0f);
-                Sq.jump(1.0f);
-                if (isWall && !isGround) flag = true;
-
-                if (!isWall)
-                {
-                    Sq.Walk(-1.0f);
-                    Sq.jump(1.0f);
-                    if (isGround)
-                    {
-                        state = 3;
-                        flag = false;
-                    }
-                }
-                else if (isGround && isWall && flag)
-                {
-                    state = 1;
-                    flag = false;
+                    alongWallFlag = false;
+                    walkDirection = -walkDirection;
+                    currentState = State.Walking;
                 }
                 break;
 
-            case 5:
+            case State.Falling:
                 Sq.Walk(0.0f);
-                Sq.jump(0.0f);
-                if (isGround) state = 1;
+                Sq.Jump(0.0f);
+                // 接地したら歩く
+                if (isGround) currentState = State.Walking;
                 break;
-
-            case 6:
-                Sq.Walk(0.0f);
-                Sq.jump(0.0f);
-                if (isGround) state = 3;
-                break;
-
 
             default:
                 //nothing
                 break;
         }
+    }
+
+    void FixedUpdate()
+    {
+        Initialize();
+        WalkAndJumpProgress();
     }
 }

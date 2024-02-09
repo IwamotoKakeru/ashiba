@@ -11,7 +11,6 @@ public class Title : MonoBehaviour
         sceneNum = SceneManager.GetActiveScene().buildIndex;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0))

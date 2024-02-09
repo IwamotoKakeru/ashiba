@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4042064391427073956}
   - component: {fileID: 4042064391427073978}
   - component: {fileID: 4042064391427073957}
+  - component: {fileID: 5159224595862995119}
   m_Layer: 0
   m_Name: ResetButton
   m_TagString: Untagged
@@ -144,3 +145,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5159224595862995119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4042064391427073983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b59a75e23b94041f89ecf4aa85fb21d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
