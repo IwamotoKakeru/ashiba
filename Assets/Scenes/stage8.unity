@@ -1659,7 +1659,7 @@ PrefabInstance:
     - target: {fileID: 4477593899322352033, guid: 4d390c272771248269d4547098b353be,
         type: 3}
       propertyPath: m_Name
-      value: Goal (2)
+      value: Goal0
       objectReference: {fileID: 0}
     - target: {fileID: 4477593899322352036, guid: 4d390c272771248269d4547098b353be,
         type: 3}
@@ -2042,6 +2042,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
         type: 3}
+      propertyPath: MaxGenerateNum
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
+        type: 3}
       propertyPath: MaxPlayerGetter
       value: 6
       objectReference: {fileID: 0}
@@ -2191,7 +2196,7 @@ PrefabInstance:
     - target: {fileID: 7524808987646908948, guid: bbfd982561162354e92548e92c2db797,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7524808987646908948, guid: bbfd982561162354e92548e92c2db797,
         type: 3}
