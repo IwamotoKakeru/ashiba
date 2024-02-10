@@ -1269,6 +1269,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
         type: 3}
+      propertyPath: MaxGenerateNum
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 543211082710862600, guid: c7e75bd6799ce9244b34bb5a3a89bd93,
+        type: 3}
       propertyPath: MaxPlayerGetter
       value: 5
       objectReference: {fileID: 0}
