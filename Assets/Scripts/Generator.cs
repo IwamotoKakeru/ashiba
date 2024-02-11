@@ -21,7 +21,7 @@ public class Generator : MonoBehaviour
     }
     void Start()
     {
-        numDisplay.ChangeNum(maxGenerateNum);
+        numDisplay.DisplayInt(maxGenerateNum);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -32,7 +32,7 @@ public class Generator : MonoBehaviour
             {
                 Instantiate(Square, this.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
                 generatedNum += 1;
-                numDisplay.ChangeNum(maxGenerateNum - generatedNum);
+                numDisplay.DisplayInt(maxGenerateNum - generatedNum);
             }
         }
     }

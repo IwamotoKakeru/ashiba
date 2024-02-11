@@ -12,18 +12,21 @@ public class StringDisplay : MonoBehaviour
     }
 
     /// <summary>
-    /// 表示する数字を変更する
+    /// 整数を1桁で表示する
     /// </summary>
-    /// <param name="displayNum">表示する数字</param>
-    public void ChangeNum(int displayNum)
+    /// <param name="displayNum">表示する整数</param>
+    public void DisplayInt(int displayNum)
     {
         num = displayNum;
         textMesh.text = num.ToString("0");
     }
 
-    void Update()
+    /// <summary>
+    /// 文字列を表示する
+    /// </summary>
+    /// <param name="displayNum">表示する文字列</param>
+    public void DisplayString(string displayString)
     {
-        // textMesh.text = num.ToString("0");
+        textMesh.text = displayString;
     }
-
 }
