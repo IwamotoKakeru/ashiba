@@ -12,15 +12,16 @@ public class Generator : MonoBehaviour
     public int MaxGenerateNum = 3;
     private int maxGenerateNum = 1;
     private int generatedNum = 0;
+
+    // numDisplayに正常に表示させるため、Awakeで数値を取得し、Startで反映させる
     void Awake()
     {
         maxGenerateNum = MaxGenerateNum;
         numDisplay = GetComponentInChildren<StringDisplay>();
     }
-
     void Start()
     {
-        numDisplay.ChangeNum(MaxGenerateNum);
+        numDisplay.ChangeNum(maxGenerateNum);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

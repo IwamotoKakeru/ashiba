@@ -8,24 +8,21 @@ public class Goal : MonoBehaviour
     public AudioClip goal;
     public AudioSource audioSource;
 
-    public int goalNumGetter = 1;
+    public int goalNumGetter = 1;// 変数名が規則違反だが、変更するとインスペクタ上の値を変更する必要があるため保留
     private int goalNum = 1;
     private StringDisplay numDisplay;
 
-    // Start is called before the first frame update
+    // numDisplayに正常に表示させるため、Awakeで数値を取得し、Startで反映させる
+    void Awake()
+    {
+        numDisplay = GetComponentInChildren<StringDisplay>();
+        goalNum = goalNumGetter;
+    }
     void Start()
     {
         audioSource = this.gameObject.GetComponent<AudioSource>();
-        numDisplay = GetComponentInChildren<StringDisplay>();
-        goalNum = goalNumGetter;
-        numDisplay.ChangeNum(goalNumGetter);
+        numDisplay.ChangeNum(goalNum);
     }
-
-    public int returnGoalNum()
-    {
-        return goalNum;
-    }
-
 
     public bool returnGoalFlag()
     {
@@ -35,7 +32,6 @@ public class Goal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.CompareTag(Tags.Player))
         {
             goalNum--;
@@ -45,6 +41,5 @@ public class Goal : MonoBehaviour
             if (goalNum == 0) Debug.Log("全体ゴール");
             numDisplay.ChangeNum(goalNum);
         }
-
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NumDisplay : MonoBehaviour
+public class StringDisplay : MonoBehaviour
 {
     private TextMesh textMesh;
     private int num;
@@ -18,11 +18,12 @@ public class NumDisplay : MonoBehaviour
     public void ChangeNum(int displayNum)
     {
         num = displayNum;
+        textMesh.text = num.ToString("0");
     }
 
     void Update()
     {
-        textMesh.text = num.ToString("0");
+        // textMesh.text = num.ToString("0");
     }
 
 }
