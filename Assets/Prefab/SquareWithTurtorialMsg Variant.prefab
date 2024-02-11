@@ -82,7 +82,7 @@ TextMesh:
   m_GameObject: {fileID: 1687043983}
   m_Text: "\u2193\u30AF\u30EA\u30C3\u30AF\u3059\u308B\u3068\u30A2\u30B7\u30D0\u306B"
   m_OffsetZ: 0
-  m_CharacterSize: 0.1
+  m_CharacterSize: 0.08
   m_LineSpacing: 0
   m_Anchor: 0
   m_Alignment: 1
@@ -93,7 +93,7 @@ TextMesh:
   m_Font: {fileID: 12800000, guid: bacbf1a90b8e34ca9a11eef6ce0e0aec, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 4278190080
+    rgba: 4294967295
 --- !u!114 &1687043988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +171,7 @@ PrefabInstance:
     - target: {fileID: 7047475473061608542, guid: 014358e6bb5c44ed4a48335e74ec36d6,
         type: 3}
       propertyPath: m_Name
-      value: SquareWithTurtorialMsg
+      value: SquareWithTurtorialMsg Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 014358e6bb5c44ed4a48335e74ec36d6, type: 3}
