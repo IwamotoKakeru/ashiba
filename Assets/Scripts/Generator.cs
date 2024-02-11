@@ -6,7 +6,7 @@ using Constants;
 public class Generator : MonoBehaviour
 {
     public GameObject Square;
-    private NumDisplay numDisplay;
+    private StringDisplay numDisplay;
 
     // インスペクタから取得するため自動実装プロパティのように扱う
     public int MaxGenerateNum = 3;
@@ -15,7 +15,7 @@ public class Generator : MonoBehaviour
     void Awake()
     {
         maxGenerateNum = MaxGenerateNum;
-        numDisplay = GetComponentInChildren<NumDisplay>();
+        numDisplay = GetComponentInChildren<StringDisplay>();
     }
 
     void Start()

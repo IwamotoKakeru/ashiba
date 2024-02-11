@@ -10,13 +10,13 @@ public class Goal : MonoBehaviour
 
     public int goalNumGetter = 1;
     private int goalNum = 1;
-    private NumDisplay numDisplay;
+    private StringDisplay numDisplay;
 
     // Start is called before the first frame update
     void Start()
     {
         audioSource = this.gameObject.GetComponent<AudioSource>();
-        numDisplay = GetComponentInChildren<NumDisplay>();
+        numDisplay = GetComponentInChildren<StringDisplay>();
         goalNum = goalNumGetter;
         numDisplay.ChangeNum(goalNumGetter);
     }
