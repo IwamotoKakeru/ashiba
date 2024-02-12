@@ -10,6 +10,8 @@ public class Generator : MonoBehaviour, IPointerDownHandler
     public GameObject generateObject;
     private List<GameObject> objectPool = new List<GameObject>();
     private StringDisplay numDisplay;
+    private AudioSource audioSource;
+    public AudioClip generateSE;
 
     // インスペクタから取得するため自動実装プロパティのように扱う
     public int MaxGenerateNum = 3;
@@ -20,6 +22,9 @@ public class Generator : MonoBehaviour, IPointerDownHandler
     private bool isGenerating = false;
     private Vector3 generateLocalPos = new Vector3(0, -1.5f, 0);
 
+    /// <summary>
+    /// オブジェクトプールにオブジェクトを非アクティブにして追加
+    /// </summary>
     void InstantiateObjects()
     {
         for (int i = 0; i < maxGenerateNum; i++)
@@ -30,9 +35,13 @@ public class Generator : MonoBehaviour, IPointerDownHandler
         }
     }
 
+    /// <summary>
+    /// オブジェクトプールから一つづつアクティブ化
+    /// アクティブ化したものはプールからは削除
+    /// </summary>
     void GenerateObject()
     {
-        Debug.Log("Clicked");
+        audioSource.PlayOneShot(generateSE);
         objectPool.First().SetActive(true);
         objectPool.RemoveAt(0);
         generatedNum += 1;
@@ -49,6 +58,7 @@ public class Generator : MonoBehaviour, IPointerDownHandler
     void Start()
     {
         numDisplay.DisplayInt(maxGenerateNum);
+        audioSource = GetComponent<AudioSource>();
     }
 
     // クリックされた際の挙動
