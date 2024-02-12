@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Constants;
+using UnityEngine.EventSystems;
 
-public class Square : MonoBehaviour
+public class Square : MonoBehaviour, IPointerDownHandler
 {
 
     //AudioCrips   
@@ -161,12 +162,12 @@ public class Square : MonoBehaviour
     }
 
     // クリックされた際の挙動
-    void OnTriggerEnter2D(Collider2D collision)
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        if (collision.gameObject.CompareTag(Tags.Cursor))
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             RoundPositonInstantiate();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
