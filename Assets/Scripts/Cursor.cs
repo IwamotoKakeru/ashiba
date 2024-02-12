@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class Cursor : MonoBehaviour
 {
-    Collider2D cursorCollider;
     private Vector3 mousePosition, target;
 
     void Start()
     {
-        //カーソルのコライダーを取得
-        cursorCollider = this.GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -22,14 +19,5 @@ public class Cursor : MonoBehaviour
         target = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = target;
 
-        //クリックされたときのみカーソルの当たり判定をOnにする
-        if (Input.GetMouseButton(0))
-        {
-            cursorCollider.enabled = true;
-        }
-        else
-        {
-            cursorCollider.enabled = false;
-        }
     }
 }
