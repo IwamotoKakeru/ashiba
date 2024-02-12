@@ -6,6 +6,7 @@ public class StringDisplay : MonoBehaviour
 {
     private TextMesh textMesh;
     private int num;
+    private string displayString;
     void Start()
     {
         textMesh = GetComponent<TextMesh>();
@@ -18,7 +19,7 @@ public class StringDisplay : MonoBehaviour
     public void DisplayInt(int displayNum)
     {
         num = displayNum;
-        textMesh.text = num.ToString("0");
+        displayString = num.ToString("0");
     }
 
     /// <summary>
@@ -27,6 +28,11 @@ public class StringDisplay : MonoBehaviour
     /// <param name="displayNum">表示する文字列</param>
     public void DisplayString(string displayString)
     {
-        textMesh.text = displayString;
+        this.displayString = displayString;
+    }
+
+    void Update()
+    {
+        textMesh.text = this.displayString;
     }
 }

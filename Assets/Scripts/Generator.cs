@@ -16,7 +16,7 @@ public class Generator : MonoBehaviour, IPointerDownHandler
     private int maxGenerateNum = 1;
     private int generatedNum = 0;
 
-    private float intervalSec = 1.0f;
+    private float intervalSec = 0.5f;
     private bool isGenerating = false;
     private Vector3 generateLocalPos = new Vector3(0, -1.5f, 0);
 

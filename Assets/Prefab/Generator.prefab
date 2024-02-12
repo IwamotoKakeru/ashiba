@@ -99,8 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d9d64126720f5f42b0adf6b968f350b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Square: {fileID: 7047475473061608542, guid: 014358e6bb5c44ed4a48335e74ec36d6, type: 3}
-  MaxPlayerGetter: 3
+  generateObject: {fileID: 7047475473061608542, guid: 014358e6bb5c44ed4a48335e74ec36d6,
+    type: 3}
+  MaxGenerateNum: 3
 --- !u!50 &543211082710862603
 Rigidbody2D:
   serializedVersion: 4
