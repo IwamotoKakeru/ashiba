@@ -4,7 +4,7 @@ using Constants;
 using UnityEngine;
 
 /// <summary>
-/// このスクリプトをアタッチしたオブジェクトがもつコライダーと特定のタグのコライダーとの重なりを完全に検知する
+/// このスクリプトをアタッチしたオブジェクトがもつトリガーと特定のタグのトリガーとの重なりを完全に検知する
 /// </summary>
 public class TouchChecker : MonoBehaviour
 {

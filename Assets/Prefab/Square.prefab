@@ -85,8 +85,8 @@ GameObject:
   - component: {fileID: 7047475473061608513}
   - component: {fileID: 7047475473061608516}
   - component: {fileID: 7047475473061608512}
-  - component: {fileID: 684324025105356855}
   - component: {fileID: 7222705925193612436}
+  - component: {fileID: 1861216873197188713}
   m_Layer: 1
   m_Name: Square
   m_TagString: Player
@@ -291,7 +291,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.45
---- !u!82 &684324025105356855
+--- !u!114 &7222705925193612436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7047475473061608542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b59a75e23b94041f89ecf4aa85fb21d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1861216873197188713
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,9 +313,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: b6ee75d6d3bbf314399fb3d3e4ca811c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -387,18 +399,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &7222705925193612436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7047475473061608542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b59a75e23b94041f89ecf4aa85fb21d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7047475473433119925
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,38 +2,85 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Constants;
+using System.Linq;
+using UnityEngine.EventSystems;
 
-public class Generator : MonoBehaviour
+public class Generator : MonoBehaviour, IPointerDownHandler
 {
-    public GameObject Square;
+    public GameObject generateObject;
+    private List<GameObject> objectPool = new List<GameObject>();
     private StringDisplay numDisplay;
+    private AudioSource audioSource;
+    public AudioClip generateSE;
 
     // インスペクタから取得するため自動実装プロパティのように扱う
     public int MaxGenerateNum = 3;
     private int maxGenerateNum = 1;
     private int generatedNum = 0;
 
+    private float intervalSec = 0.5f;
+    private bool isGenerating = false;
+    private Vector3 generateLocalPos = new Vector3(0, -1.5f, 0);
+
+    /// <summary>
+    /// オブジェクトプールにオブジェクトを非アクティブにして追加
+    /// </summary>
+    void InstantiateObjects()
+    {
+        for (int i = 0; i < maxGenerateNum; i++)
+        {
+            GameObject tempObject = Instantiate(generateObject, this.transform.position + generateLocalPos, Quaternion.identity);
+            tempObject.SetActive(false);
+            objectPool.Add(tempObject);
+        }
+    }
+
+    /// <summary>
+    /// オブジェクトプールから一つづつアクティブ化
+    /// アクティブ化したものはプールからは削除
+    /// </summary>
+    void GenerateObject()
+    {
+        audioSource.PlayOneShot(generateSE);
+        objectPool.First().SetActive(true);
+        objectPool.RemoveAt(0);
+        generatedNum += 1;
+        numDisplay.DisplayInt(maxGenerateNum - generatedNum);
+    }
+
     // numDisplayに正常に表示させるため、Awakeで数値を取得し、Startで反映させる
     void Awake()
     {
         maxGenerateNum = MaxGenerateNum;
+        InstantiateObjects();
         numDisplay = GetComponentInChildren<StringDisplay>();
     }
     void Start()
     {
         numDisplay.DisplayInt(maxGenerateNum);
+        audioSource = GetComponent<AudioSource>();
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    // クリックされた際の挙動
+    void IPointerDownHandler.OnPointerDown(PointerEventData pointerEventData)
     {
-        if (generatedNum < maxGenerateNum)
+        if (pointerEventData.button == PointerEventData.InputButton.Left && generatedNum < maxGenerateNum)
+            StartCoroutine(GenerateCoroutine());
+    }
+
+    private IEnumerator GenerateCoroutine()
+    {
+        if (isGenerating)
         {
-            if (collision.gameObject.CompareTag(Tags.Cursor))
-            {
-                Instantiate(Square, this.transform.position + new Vector3(0, -1.5f, 0), Quaternion.identity);
-                generatedNum += 1;
-                numDisplay.DisplayInt(maxGenerateNum - generatedNum);
-            }
+            // 何もしない
+        }
+        else
+        {
+            isGenerating = true;
+            GenerateObject();
+            // 連続で生成できないように間隔を設ける
+            yield return new WaitForSeconds(intervalSec);
+            isGenerating = false;
         }
     }
 }
