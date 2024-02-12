@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Constants;
 using System.Linq;
+using UnityEngine.EventSystems;
 
-public class Generator : TouchChecker
+public class Generator : MonoBehaviour, IPointerDownHandler
 {
-    // 検知するタグをカーソルに変更
-    public override string ObjectTag => Tags.Cursor;
-
-    public GameObject gameObject;
+    public GameObject generateObject;
     private List<GameObject> objectPool = new List<GameObject>();
     private StringDisplay numDisplay;
 
@@ -19,13 +17,14 @@ public class Generator : TouchChecker
     private int generatedNum = 0;
 
     private float intervalSec = 1.0f;
+    private bool isGenerating = false;
     private Vector3 generateLocalPos = new Vector3(0, -1.5f, 0);
 
     void InstantiateObjects()
     {
         for (int i = 0; i < maxGenerateNum; i++)
         {
-            GameObject tempObject = Instantiate(gameObject, this.transform.position + generateLocalPos, Quaternion.identity);
+            GameObject tempObject = Instantiate(generateObject, this.transform.position + generateLocalPos, Quaternion.identity);
             tempObject.SetActive(false);
             objectPool.Add(tempObject);
         }
@@ -33,6 +32,7 @@ public class Generator : TouchChecker
 
     void GenerateObject()
     {
+        Debug.Log("Clicked");
         objectPool.First().SetActive(true);
         objectPool.RemoveAt(0);
         generatedNum += 1;
@@ -49,22 +49,28 @@ public class Generator : TouchChecker
     void Start()
     {
         numDisplay.DisplayInt(maxGenerateNum);
-        StartCoroutine(GenerateCoroutine());
+    }
+
+    // クリックされた際の挙動
+    void IPointerDownHandler.OnPointerDown(PointerEventData pointerEventData)
+    {
+        if (pointerEventData.button == PointerEventData.InputButton.Left && generatedNum < maxGenerateNum)
+            StartCoroutine(GenerateCoroutine());
     }
 
     private IEnumerator GenerateCoroutine()
     {
-        while (generatedNum < maxGenerateNum)
+        if (isGenerating)
         {
-            Debug.Log(IsTouching());
-            if (IsTouching())
-            {
-                GenerateObject();
-                yield return new WaitForSeconds(intervalSec);
-            }
-            // 1F待つ
-            yield return null;
+            // 何もしない
         }
-        Debug.Log("End coroutine");
+        else
+        {
+            isGenerating = true;
+            GenerateObject();
+            // 連続で生成できないように間隔を設ける
+            yield return new WaitForSeconds(intervalSec);
+            isGenerating = false;
+        }
     }
 }
