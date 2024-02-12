@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Constants;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 /// <summary>
@@ -11,7 +8,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     private SpriteRenderer spriteRenderer;
-    private Color hoverColor = new Color(0.8f, 0.6f, 0.6f);
+    private Color hoverColor = new Color(0.6f, 0.8f, 0.6f);
 
     void Start()
     {
