@@ -1,13 +1,11 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using Constants;
 using UnityEngine.EventSystems;
 
 public class Square : MonoBehaviour, IPointerDownHandler
 {
 
-    //AudioCrips   
+    //AudioCrips
     public AudioClip jumpSE;
 
     //Components
@@ -19,8 +17,7 @@ public class Square : MonoBehaviour, IPointerDownHandler
     public TouchChecker ground, ceiling;
     public GameObject corpse;
 
-    private float gravity = 4.0f;
-
+    private float fallSpeed = 2.0f;
     private float walkSpeed = 2.0f;
     private float jumpSpeed = 3.0f;
 
@@ -55,7 +52,7 @@ public class Square : MonoBehaviour, IPointerDownHandler
         isCeiling = ceiling.IsTouching();
         xSpeed = 0.0f;
         if (isGround) ySpeed = 0.0f;
-        else ySpeed = -gravity;
+        else ySpeed = -fallSpeed;
     }
 
     /// <summary>
