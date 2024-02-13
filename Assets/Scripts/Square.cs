@@ -94,7 +94,6 @@ public class Square : MonoBehaviour, IPointerDownHandler
         if (isGround && jumpInput > 0.0f && !isJumping)
         {
             audioSC.PlayOneShot(jumpSE);
-            Debug.Log("In Square");
         }
         // 地上にいる際
         if (isGround)
