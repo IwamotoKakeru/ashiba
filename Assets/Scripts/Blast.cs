@@ -5,6 +5,7 @@ using UnityEngine;
 /// Bomberがクリックされた際に生成させる
 /// 触れたRigidBodyを持つオブジェクトを削除
 /// </summary>
+/// 実装:岩本
 public class Blast : MonoBehaviour
 {
     private float blastingTime = 0.8f;

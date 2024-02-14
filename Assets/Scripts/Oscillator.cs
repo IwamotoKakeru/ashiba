@@ -5,6 +5,7 @@ using UnityEngine;
 /// オブジェクトを左右に振動させる
 /// 主に生成時に死体を振動させるのに使用
 /// </summary>
+/// 実装:岩本
 public class Oscillator : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;

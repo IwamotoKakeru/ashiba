@@ -1,5 +1,6 @@
 ﻿using System;
 
+/// 実装:岩本
 namespace Constants
 {
     /// <summary>

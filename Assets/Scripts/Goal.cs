@@ -4,6 +4,7 @@ using Constants;
 /// <summary>
 /// ゴール用のスクリプト
 /// </summary>
+/// 実装:岩本
 public class Goal : MonoBehaviour
 {
     public AudioClip goal;

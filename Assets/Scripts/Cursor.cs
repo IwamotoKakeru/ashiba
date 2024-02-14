@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+/// 実装:岩本
 /// <summary>
 /// ゲーム内カーソルをマウスに追従させる
 /// </summary>

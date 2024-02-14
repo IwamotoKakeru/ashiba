@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 /// <summary>
 /// キャラクターを生成する
 /// </summary>
+/// 実装:岩本
 public class Generator : MonoBehaviour, IPointerDownHandler
 {
     public GameObject generateObject;

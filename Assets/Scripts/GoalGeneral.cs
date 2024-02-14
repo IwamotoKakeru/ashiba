@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 /// <summary>
 /// シーン上のすべてのゴールからクリア判定を行う
 /// </summary>
+/// 実装:岩本
 public class GoalGeneral : MonoBehaviour
 {
     private Goal[] goalsScripts;

@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 /// マウスが重なった際のホバー
 /// SpriteRendererとコライダー2Dを所持しているオブジェクトにこのスクリプトをアタッチするとホバーが実装される
 /// </summary>
+/// 実装:岩本
 public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 

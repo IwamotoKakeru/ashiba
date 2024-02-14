@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// 実装:岩本
 /// <summary>
 /// エンドロール時に実行されるスクリプト
 /// </summary>

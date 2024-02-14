@@ -5,6 +5,7 @@ using UnityEngine;
 /// 親のスケールが反転した際に子が反転しないように表示されるようにするためのコンポーネント
 /// 反転してほしくない子オブジェクトにアタッチする
 /// </summary>
+/// 実装:岩本
 public class FlipAvoider : MonoBehaviour
 {
     void Update()
