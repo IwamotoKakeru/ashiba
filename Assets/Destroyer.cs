@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Constants;
+﻿using Constants;
 using UnityEngine;
 
 /// <summary>
@@ -14,7 +12,6 @@ public class Destroyer : MonoBehaviour
         if (!collision.gameObject.CompareTag(Tags.Cursor))
         {
             Destroy(collision.gameObject);
-            Debug.Log("消滅");
         }
 
     }

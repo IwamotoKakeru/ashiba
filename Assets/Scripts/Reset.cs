@@ -2,6 +2,10 @@
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// リセットボタン
+/// 押されたらシーンをリロードする
+/// </summary>
 public class Reset : MonoBehaviour, IPointerDownHandler
 {
     void IPointerDownHandler.OnPointerDown(PointerEventData eventData)

@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/// <summary>
+/// ゲーム内で文字列を表示するオブジェクト
+/// </summary>
 public class StringDisplay : MonoBehaviour
 {
     private TextMesh textMesh;
@@ -33,6 +34,7 @@ public class StringDisplay : MonoBehaviour
 
     void Update()
     {
+        //Updateに記述しないと表示されない時があるため保留
         textMesh.text = this.displayString;
     }
 }

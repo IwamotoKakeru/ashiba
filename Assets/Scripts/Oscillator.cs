@@ -1,8 +1,10 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// オブジェクトを左右に振動させる
+/// 主に生成時に死体を振動させるのに使用
+/// </summary>
 public class Oscillator : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;

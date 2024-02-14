@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Constants;
 
+/// <summary>
+/// ゴール用のスクリプト
+/// </summary>
 public class Goal : MonoBehaviour
 {
     public AudioClip goal;
     public AudioSource audioSource;
 
-    public int goalNumGetter = 1;// 変数名が規則違反だが、変更するとインスペクタ上の値を変更する必要があるため保留
+    public int goalNumGetter = 1;// 変数名が規則違反だが、変更するとインスペクタ上の値をすべて変更する必要があるため保留
     private int goalNum = 1;
     private StringDisplay numDisplay;
 

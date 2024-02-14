@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// タイトルシーンのロゴ
+/// </summary>
 public class Title : MonoBehaviour
 {
     private int sceneNum;
@@ -13,6 +14,7 @@ public class Title : MonoBehaviour
 
     void Update()
     {
+        // 右クリック
         if (Input.GetMouseButtonDown(0))
         {
             sceneNum++;

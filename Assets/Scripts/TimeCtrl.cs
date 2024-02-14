@@ -1,9 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// ゲーム内のオブジェクトの何処か一つにアタッチすると早送り機能が使える
+/// シーン内のオブジェクトの何処か一つにアタッチすると早送り機能が使える
+/// 暫定でCursorにアタッチ
 /// </summary>
 public class TimeCtrl : MonoBehaviour
 {

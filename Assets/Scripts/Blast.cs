@@ -1,6 +1,10 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+/// <summary>
+/// Bomberがクリックされた際に生成させる
+/// 触れたRigidBodyを持つオブジェクトを削除
+/// </summary>
 public class Blast : MonoBehaviour
 {
     private float blastingTime = 0.8f;

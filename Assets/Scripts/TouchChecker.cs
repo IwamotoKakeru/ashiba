@@ -31,7 +31,7 @@ public class TouchChecker : MonoBehaviour
     }
 
     /// <summary>
-    /// 触れているかどうかを取得する
+    /// 触れているかどうかを返す
     /// </summary>
     /// <returns>触れているなら真</returns>
     public bool IsTouching()
