@@ -16,7 +16,7 @@ public class Generator : MonoBehaviour, IPointerDownHandler
     /// 生成するオブジェクトを事前に生成
     /// </summary>
     /// <remarks>
-    /// 生成する際にInstantiateを使用するとコルーチン内で1fを超えてしまうことがあるためオブジェクトプールを使用
+    /// 生成する際にInstantiateを使用するとコルーチン内で1fを超えてしまうことがあるためオブジェクトプールを実装
     /// </remarks>
     private List<GameObject> objectPool = new List<GameObject>();
     private StringDisplay numDisplay;

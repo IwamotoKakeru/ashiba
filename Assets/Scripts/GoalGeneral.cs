@@ -26,7 +26,7 @@ public class GoalGeneral : MonoBehaviour
         goalFlags = true;
         foreach (Goal goalScript in goalsScripts)
         {
-            goalFlags &= goalScript.returnGoalFlag();
+            goalFlags &= goalScript.ReturnGoalFlag();
         }
 
     }

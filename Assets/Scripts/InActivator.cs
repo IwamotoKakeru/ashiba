@@ -2,16 +2,16 @@
 using UnityEngine;
 
 /// <summary>
-/// 画面外にでたオブジェクトを削除する
+/// 画面外にでたオブジェクトを非アクティブにする
 /// </summary>
-public class Destroyer : MonoBehaviour
+public class InActivator : MonoBehaviour
 {
     void OnTriggerExit2D(Collider2D collision)
     {
 
         if (!collision.gameObject.CompareTag(Tags.Cursor))
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
 
     }
