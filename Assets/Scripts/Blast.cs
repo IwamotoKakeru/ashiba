@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Blast : MonoBehaviour
 {
-    private float blastingTime = 1.6f;
+    private float blastingTime = 0.8f;
 
     void Start()
     {
