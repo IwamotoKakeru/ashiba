@@ -84,7 +84,7 @@ TextMesh:
   m_OffsetZ: 0
   m_CharacterSize: 0.06
   m_LineSpacing: 0
-  m_Anchor: 2
+  m_Anchor: 1
   m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 64

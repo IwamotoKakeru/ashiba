@@ -13,11 +13,15 @@ public class Endroll : MonoBehaviour
     private Text tex;
 
     private float intervalSecond = 6.0f;
-    private string end = "おわり";
-    private string staff1 = "スタッフ\n＜　乗算記号　＞\nグラフィック\nプログラミング";
-    private string staff2 = "スタッフ\n＜　アダ　＞\nサウンド\nプログラミング";
-    private string staff3 = "スタッフ\n＜　酢酸カーミン　＞\nプログラミング\nステージ制作";
-    private string staff4 = "スタッフ\n＜　chouette　＞\nプログラミング\nステージ制作\nデバッグ";
+    private string[] creditArray = new string[]
+    {
+        "おわり",
+        "スタッフ\n＜　乗算記号　＞\n企画\nプログラミング",
+        "スタッフ\n＜　くだもん　＞\nグラフィック",
+        "スタッフ\n＜　アダ　＞\nサウンド\nプログラミング",
+        "スタッフ\n＜　酢酸カーミン　＞\nプログラミング\nステージ制作",
+        "スタッフ\n＜　chouette　＞\nプログラミング\nステージ制作\nデバッグ",
+    };
     private string company = "九州工業大学\nプログラミング研究会";
 
     private Vector3 logoPos = new Vector3(0.0f, 1.6f, 0.0f);
@@ -25,7 +29,7 @@ public class Endroll : MonoBehaviour
     void Start()
     {
         tex = GetComponent<Text>();
-        StartCoroutine(RunEndRoll());
+        StartCoroutine(RunEndroll());
     }
 
     void ChangeText(string str)
@@ -33,18 +37,13 @@ public class Endroll : MonoBehaviour
         tex.text = str;
     }
 
-    IEnumerator RunEndRoll()
+    IEnumerator RunEndroll()
     {
-        ChangeText(end);
-        yield return new WaitForSeconds(intervalSecond);
-        ChangeText(staff1);
-        yield return new WaitForSeconds(intervalSecond);
-        ChangeText(staff2);
-        yield return new WaitForSeconds(intervalSecond);
-        ChangeText(staff3);
-        yield return new WaitForSeconds(intervalSecond);
-        ChangeText(staff4);
-        yield return new WaitForSeconds(intervalSecond);
+        foreach (string credit in creditArray)
+        {
+            ChangeText(credit);
+            yield return new WaitForSeconds(intervalSecond);
+        }
         Instantiate(Logo, logoPos, Quaternion.identity);
         ChangeText(company);
         yield return new WaitForSeconds(intervalSecond * 3);
