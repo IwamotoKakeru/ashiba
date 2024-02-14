@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// エンドロール時に実行されるスクリプト
+/// </summary>
 public class Endroll : MonoBehaviour
 {
     public GameObject Logo;
@@ -14,7 +17,7 @@ public class Endroll : MonoBehaviour
     private string staff1 = "スタッフ\n＜　乗算記号　＞\nグラフィック\nプログラミング";
     private string staff2 = "スタッフ\n＜　アダ　＞\nサウンド\nプログラミング";
     private string staff3 = "スタッフ\n＜　酢酸カーミン　＞\nプログラミング\nステージ制作";
-    private string se = "スタッフ\n＜　chouette　＞\nプログラミング\nステージ制作\nデバッグ";
+    private string staff4 = "スタッフ\n＜　chouette　＞\nプログラミング\nステージ制作\nデバッグ";
     private string company = "九州工業大学\nプログラミング研究会";
 
     private Vector3 logoPos = new Vector3(0.0f, 1.6f, 0.0f);
@@ -40,7 +43,7 @@ public class Endroll : MonoBehaviour
         yield return new WaitForSeconds(intervalSecond);
         ChangeText(staff3);
         yield return new WaitForSeconds(intervalSecond);
-        ChangeText(se);
+        ChangeText(staff4);
         yield return new WaitForSeconds(intervalSecond);
         Instantiate(Logo, logoPos, Quaternion.identity);
         ChangeText(company);

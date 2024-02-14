@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -14,16 +12,16 @@ public class FlipAvoider : MonoBehaviour
         var parentLossyScale = this.transform.parent.lossyScale;
         var tempLocalScale = this.transform.localScale;
 
-        // もし親が負なら
+        // もし親が左向きなら
         if (parentLossyScale.x <= -0.0f)
         {
-            // 自分も負に
+            // 自分も左向きに
             tempLocalScale.x = -Math.Abs(tempLocalScale.x);
             transform.localScale = tempLocalScale;
         }
         else
         {
-            // 負でなければ自分を正に
+            // 親が右向きなら自分も右向きに
             tempLocalScale.x = Math.Abs(tempLocalScale.x);
             transform.localScale = tempLocalScale;
         }

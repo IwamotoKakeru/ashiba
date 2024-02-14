@@ -1,14 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Constants;
 
+/// <summary>
+/// ゴール用のスクリプト
+/// </summary>
 public class Goal : MonoBehaviour
 {
     public AudioClip goal;
     public AudioSource audioSource;
 
-    public int goalNumGetter = 1;// 変数名が規則違反だが、変更するとインスペクタ上の値を変更する必要があるため保留
+    public int goalNumGetter = 1;// 変数名が規則違反だが、変更するとインスペクタ上の値をすべて変更する必要があるため保留
     private int goalNum = 1;
     private StringDisplay numDisplay;
 
@@ -24,7 +25,7 @@ public class Goal : MonoBehaviour
         numDisplay.DisplayInt(goalNum);
     }
 
-    public bool returnGoalFlag()
+    public bool ReturnGoalFlag()
     {
         if (goalNum == 0) return true;
         else return false;
@@ -35,10 +36,8 @@ public class Goal : MonoBehaviour
         if (collision.gameObject.CompareTag(Tags.Player))
         {
             goalNum--;
-            Debug.Log("1体ゴール");
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             audioSource.PlayOneShot(goal);
-            if (goalNum == 0) Debug.Log("全体ゴール");
             numDisplay.DisplayInt(goalNum);
         }
     }

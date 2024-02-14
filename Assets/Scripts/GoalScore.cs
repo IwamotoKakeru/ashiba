@@ -1,23 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-
 using UnityEngine.UI;
 
-
+/// <summary>
+/// ゴール用のスコアを表示する
+/// </summary>
+[Obsolete("StrignDisplayの使用を推奨")]
 public class GoalScore : MonoBehaviour
 {
-
     public GameObject score_object = null;
     public string score_num; //スコア変数
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
         // オブジェクトからTextコンポーネントを取得

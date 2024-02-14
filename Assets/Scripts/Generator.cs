@@ -5,9 +5,19 @@ using Constants;
 using System.Linq;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// キャラクターを生成する
+/// </summary>
 public class Generator : MonoBehaviour, IPointerDownHandler
 {
     public GameObject generateObject;
+
+    /// <summary>
+    /// 生成するオブジェクトを事前に生成
+    /// </summary>
+    /// <remarks>
+    /// 生成する際にInstantiateを使用するとコルーチン内で1fを超えてしまうことがあるためオブジェクトプールを実装
+    /// </remarks>
     private List<GameObject> objectPool = new List<GameObject>();
     private StringDisplay numDisplay;
     private AudioSource audioSource;
@@ -37,7 +47,7 @@ public class Generator : MonoBehaviour, IPointerDownHandler
 
     /// <summary>
     /// オブジェクトプールから一つづつアクティブ化
-    /// アクティブ化したものはプールからは削除
+    /// アクティブ化したものはリストから削除
     /// </summary>
     void GenerateObject()
     {
@@ -70,6 +80,7 @@ public class Generator : MonoBehaviour, IPointerDownHandler
 
     private IEnumerator GenerateCoroutine()
     {
+        // 2重で生成することを防ぐ
         if (isGenerating)
         {
             // 何もしない

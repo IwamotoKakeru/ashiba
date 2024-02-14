@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// シーン上のすべてのゴールからクリア判定を行う
+/// </summary>
 public class GoalGeneral : MonoBehaviour
 {
-    // Start is called before the first frame update
     private Goal[] goalsScripts;
     private bool goalFlags;
     private bool instantFlag = false;
@@ -26,7 +26,7 @@ public class GoalGeneral : MonoBehaviour
         goalFlags = true;
         foreach (Goal goalScript in goalsScripts)
         {
-            goalFlags &= goalScript.returnGoalFlag();
+            goalFlags &= goalScript.ReturnGoalFlag();
         }
 
     }
