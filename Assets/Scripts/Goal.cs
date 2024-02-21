@@ -1,33 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Constants;
 
+/// <summary>
+/// ゴール用のスクリプト
+/// </summary>
+/// 実装:岩本
 public class Goal : MonoBehaviour
 {
     public AudioClip goal;
     public AudioSource audioSource;
 
-    public int goalNumGetter = 1;
+    public int goalNumGetter = 1;// 変数名が規則違反だが、変更するとインスペクタ上の値をすべて変更する必要があるため保留
     private int goalNum = 1;
-    private NumDisplay numDisplay;
+    private StringDisplay numDisplay;
 
-    // Start is called before the first frame update
+    // numDisplayに正常に表示させるため、Awakeで数値を取得し、Startで反映させる
+    void Awake()
+    {
+        numDisplay = GetComponentInChildren<StringDisplay>();
+        goalNum = goalNumGetter;
+    }
     void Start()
     {
         audioSource = this.gameObject.GetComponent<AudioSource>();
-        numDisplay = GetComponentInChildren<NumDisplay>();
-        goalNum = goalNumGetter;
-        numDisplay.ChangeNum(goalNumGetter);
+        numDisplay.DisplayInt(goalNum);
     }
 
-    public int returnGoalNum()
-    {
-        return goalNum;
-    }
-
-
-    public bool returnGoalFlag()
+    public bool ReturnGoalFlag()
     {
         if (goalNum == 0) return true;
         else return false;
@@ -35,16 +34,12 @@ public class Goal : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.gameObject.CompareTag(Tags.Player))
         {
             goalNum--;
-            Debug.Log("1体ゴール");
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             audioSource.PlayOneShot(goal);
-            if (goalNum == 0) Debug.Log("全体ゴール");
-            numDisplay.ChangeNum(goalNum);
+            numDisplay.DisplayInt(goalNum);
         }
-
     }
 }

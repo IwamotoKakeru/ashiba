@@ -1,12 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Constants;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class Square : MonoBehaviour
+/// <summary>
+/// 歩いてジャンプするキャラクタ
+/// </summary>
+/// 実装:岩本
+public class Square : MonoBehaviour, IPointerDownHandler
 {
 
-    //AudioCrips   
+    //AudioCrips
     public AudioClip jumpSE;
 
     //Components
@@ -18,8 +20,8 @@ public class Square : MonoBehaviour
     public TouchChecker ground, ceiling;
     public GameObject corpse;
 
-    private float gravity = 4.0f;
-
+    // 移動用変数
+    private float fallSpeed = 2.0f;
     private float walkSpeed = 2.0f;
     private float jumpSpeed = 3.0f;
 
@@ -28,7 +30,7 @@ public class Square : MonoBehaviour
     private bool isGround = false;
     private bool isCeiling = false;
 
-    //Jump variables
+    //ジャンプ用変数
     private float jumpPos = 0.0f;
     private float maxJumpHeight = 1.2f;
     private float jumpTime = 0.0f;
@@ -46,7 +48,7 @@ public class Square : MonoBehaviour
 
     /// <summary>
     /// Squareの初期化を行う
-    /// Squareを使用する際にUpdateの始めに必ず呼び出す
+    /// Squareを他スクリプトで制御する際にUpdateの始めに必ず呼び出す
     /// </summary>
     public void Initialize()
     {
@@ -54,7 +56,7 @@ public class Square : MonoBehaviour
         isCeiling = ceiling.IsTouching();
         xSpeed = 0.0f;
         if (isGround) ySpeed = 0.0f;
-        else ySpeed = -gravity;
+        else ySpeed = -fallSpeed;
     }
 
     /// <summary>
@@ -96,7 +98,6 @@ public class Square : MonoBehaviour
         if (isGround && jumpInput > 0.0f && !isJumping)
         {
             audioSC.PlayOneShot(jumpSE);
-            Debug.Log("In Square");
         }
         // 地上にいる際
         if (isGround)
@@ -151,22 +152,21 @@ public class Square : MonoBehaviour
     //死体を丁度いい位置に生成する関数
     void RoundPositonInstantiate()
     {
-
         Vector3 instantPosition = transform.position;
         instantPosition.x = NumericRounder(instantPosition.x);
         instantPosition.y = NumericRounder(instantPosition.y);
 
         Instantiate(corpse, instantPosition, Quaternion.identity);
-
     }
 
     // クリックされた際の挙動
-    void OnTriggerEnter2D(Collider2D collision)
+    // スマホの場合はOnPointerClickの法が良さげ
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        if (collision.gameObject.CompareTag(Tags.Cursor))
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             RoundPositonInstantiate();
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

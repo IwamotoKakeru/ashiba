@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Constants;
+﻿using Constants;
 using UnityEngine;
 
 /// <summary>
-/// このスクリプトをアタッチしたオブジェクトがもつコライダーと特定のタグのコライダーとの重なりを完全に検知する
+/// このスクリプトをアタッチしたオブジェクトがもつトリガーと特定のタグのトリガーとの重なりを完全に検知する
 /// </summary>
 public class TouchChecker : MonoBehaviour
 {
@@ -31,7 +29,7 @@ public class TouchChecker : MonoBehaviour
     }
 
     /// <summary>
-    /// 触れているかどうかを取得する
+    /// 触れているかどうかを返す
     /// </summary>
     /// <returns>触れているなら真</returns>
     public bool IsTouching()

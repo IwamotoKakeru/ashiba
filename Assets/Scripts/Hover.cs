@@ -1,33 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Constants;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 /// <summary>
-/// SpriteRendererを所持しているオブジェクトにこのスクリプトをアタッチするとホバーが実装される
+/// マウスが重なった際のホバー
+/// SpriteRendererとコライダー2Dを所持しているオブジェクトにこのスクリプトをアタッチするとホバーが実装される
 /// </summary>
-public class Hover : TouchChecker
+/// 実装:岩本
+public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public override string ObjectTag => Tags.Hover;
 
     private SpriteRenderer spriteRenderer;
-    private Color hoverColor = new Color(0.8f, 0.8f, 0.8f);
+    private Color hoverColor = new Color(0.6f, 0.8f, 0.6f);
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void Update()
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        if (IsTouching())
-        {
-            spriteRenderer.color = hoverColor;
-        }
-        else
-        {
-            spriteRenderer.color = Color.white;
-        }
+        spriteRenderer.color = hoverColor;
+    }
 
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        spriteRenderer.color = Color.white;
     }
 }

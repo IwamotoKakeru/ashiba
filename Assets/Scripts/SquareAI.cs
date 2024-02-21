@@ -1,15 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 enum State
 {
     Walking,
     Jumping,
     Falling,
-
 }
 
+/// <summary>
+/// Squareを制御するAI
+/// </summary>
 public class SquareAI : MonoBehaviour
 {
     private State currentState = State.Walking;
@@ -18,7 +18,6 @@ public class SquareAI : MonoBehaviour
     private float walkVelocity = 1.0f;
     private readonly float walkInput = 1.0f;
     private readonly float jumpInput = 1.0f;
-
 
     Square Sq;
     public TouchChecker ground, ceiling, wall;

@@ -1,14 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Constants;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class Reset : MonoBehaviour
+/// <summary>
+/// リセットボタン
+/// 押されたらシーンをリロードする
+/// </summary>
+public class Reset : MonoBehaviour, IPointerDownHandler
 {
-    void OnTriggerEnter2D(Collider2D collision)
+    void IPointerDownHandler.OnPointerDown(PointerEventData eventData)
     {
-        if (collision.gameObject.CompareTag(Tags.Cursor))
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
