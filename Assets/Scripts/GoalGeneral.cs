@@ -10,7 +10,6 @@ using UnityEngine.SceneManagement;
 public class GoalGeneral : MonoBehaviour
 {
     private Goal[] goalsScripts;
-    private bool goalFlags;
     private bool goaledFlag = false;
     private int sceneNum;
     public GameObject clearLogo;
@@ -30,20 +29,19 @@ public class GoalGeneral : MonoBehaviour
         fade = fader.GetComponent<FadeManager>();
     }
 
-    void GoalCheck()
+    bool GoalCheck()
     {
-        goalFlags = true;
+        bool goalFlags = true;
         foreach (Goal goalScript in goalsScripts)
         {
             goalFlags &= goalScript.ReturnGoalFlag();
         }
-
+        return goalFlags;
     }
 
     void Update()
     {
-        GoalCheck();
-        if (goalFlags && !goaledFlag)
+        if (GoalCheck() && !goaledFlag)
         {
             goaledFlag = true;
             StartCoroutine(GoToNextScene());
