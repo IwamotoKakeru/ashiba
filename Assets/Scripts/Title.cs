@@ -7,9 +7,13 @@ using UnityEngine.SceneManagement;
 public class Title : MonoBehaviour
 {
     private int sceneNum;
+    
+    public GameObject Fader;
+    FadeManager fade;
     void Start()
     {
         sceneNum = SceneManager.GetActiveScene().buildIndex;
+        fade = Fader.GetComponent<FadeManager>();
     }
 
     void Update()
@@ -18,7 +22,7 @@ public class Title : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             sceneNum++;
-            SceneManager.LoadScene(sceneNum);
+            StartCoroutine(fade.FadeOutCorutine(() => SceneManager.LoadScene(sceneNum)));
         }
     }
 }
