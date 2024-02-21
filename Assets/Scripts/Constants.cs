@@ -27,5 +27,10 @@ namespace Constants
         /// キャラクタが歩く地面や壁等に用いる
         /// </summary>
         public const string Block = "Block";
+
+        /// <summary>
+        /// FadeManagerコンポーネントを持つオブジェクトにのみに用いる
+        /// </summary>
+        public const string Fader = "Fader";
     }
 }
