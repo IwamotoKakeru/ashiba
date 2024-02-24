@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 using UnityEngine.SceneManagement;
-using System;
 
 /// <summary>
 /// 全ステージのBGMを管理する
@@ -23,19 +21,26 @@ public class BgmManager : MonoBehaviour
     }
 
 
-    public AudioSource StageBgm;
-    public AudioSource EndingBgm;
+    private AudioSource audioSource;
+
+    public AudioClip stage;
+    public AudioClip ending;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         //シーンが切り替わった時に呼ばれるメソッドを登録
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
 
         //エディター上でBGMを流すために使用
-        ChangeBgm(SceneManager.GetActiveScene().buildIndex);
+        PlayBgm(SceneManager.GetActiveScene().buildIndex);
     }
 
-    void CountinuPlay(AudioSource audioSource)
+    /// <summary>
+    /// ステージが変わった際にBGMを途切れさせずに再生する
+    /// </summary>
+    void CountinuPlay()
     {
         // 再生されていなければ再生
         if (!audioSource.isPlaying)
@@ -44,35 +49,31 @@ public class BgmManager : MonoBehaviour
         }
     }
 
-    void ChangeBgm(int buildIndex)
+    void PlayBgm(int buildIndex)
     {
         if (buildIndex == 0)
         {
             //タイトル
-            StageBgm.Stop();
-            EndingBgm.Stop();
-            Debug.Log("Title");
+            audioSource.Stop();
         }
         else if (buildIndex == 10)
         {
             //エンディング
-            StageBgm.Stop();
-            EndingBgm.Play();
-            Debug.Log("Into Ending");
+            audioSource.clip = ending;
+            CountinuPlay();
         }
         else
         {
             //ステージ
-            CountinuPlay(StageBgm);
-            EndingBgm.Stop();
-            Debug.Log("Into Stage");
+            audioSource.clip = stage;
+            CountinuPlay();
         }
     }
 
     //シーンが切り替わった瞬間に呼ばれるメソッド　
     void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
     {
-        ChangeBgm(nextScene.buildIndex);
+        PlayBgm(nextScene.buildIndex);
     }
 
 }
