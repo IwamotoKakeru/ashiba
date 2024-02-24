@@ -33,4 +33,19 @@ namespace Constants
         /// </summary>
         public const string Fader = "Fader";
     }
+
+    /// <summary>
+    /// シーンのIndex番号
+    /// </summary>
+    public enum SceneIndex
+    {
+        Title,
+        Turtorial,
+        FirstStage,
+
+        // TODO: EndingシーンのインデックスをTurtorialの前に移動させる
+        // 今後シーンが増えるとエンディングのIndexもずれてしまうため
+        Ending = 10
+    }
+
 }

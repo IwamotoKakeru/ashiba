@@ -51,12 +51,12 @@ public class BgmManager : MonoBehaviour
 
     void PlayBgm(int buildIndex)
     {
-        if (buildIndex == 0)
+        if (buildIndex == (int)Constants.SceneIndex.Title)
         {
             //タイトル
             audioSource.Stop();
         }
-        else if (buildIndex == 10)
+        else if (buildIndex == (int)Constants.SceneIndex.Ending)
         {
             //エンディング
             audioSource.clip = ending;
