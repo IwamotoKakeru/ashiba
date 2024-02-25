@@ -76,4 +76,22 @@ public class BgmManager : MonoBehaviour
         PlayBgm(nextScene.buildIndex);
     }
 
+    /// <summary>
+    /// BGMの速さを変更する
+    /// </summary>
+    /// <param name="pitch">速度</param>
+    public void ChangePitch(float pitch = 1.0f)
+    {
+        audioSource.pitch = pitch;
+    }
+
+
+    /// <summary>
+    /// 右クリックした際にBGMも早送りに
+    /// </summary>
+    void Update()
+    {
+        ChangePitch(Time.timeScale);
+    }
+
 }
