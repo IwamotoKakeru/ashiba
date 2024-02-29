@@ -17,13 +17,23 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    protected virtual void SetHover()
     {
         spriteRenderer.color = hoverColor;
     }
 
-    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    protected virtual void UnsetHover()
     {
         spriteRenderer.color = Color.white;
+    }
+
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
+    {
+        SetHover();
+    }
+
+    void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
+    {
+        UnsetHover();
     }
 }
