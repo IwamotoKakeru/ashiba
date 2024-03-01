@@ -3,7 +3,7 @@
 /// <summary>
 /// 
 /// </summary>
-public class CharactorHover : Hover
+public class CharaHover : Hover
 {
     public GameObject virtualObject;
 

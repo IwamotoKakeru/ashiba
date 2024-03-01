@@ -2,10 +2,10 @@
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// 歩いてジャンプするキャラクタ
+/// キャラクターの基本動作
 /// </summary>
 /// 実装:岩本
-public class Square : MonoBehaviour, IPointerDownHandler
+public class CharaBase : MonoBehaviour, IPointerDownHandler
 {
 
     //AudioCrips
