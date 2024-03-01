@@ -303,7 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ca63323c71264062a843e68ada18950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  virtualObject: {fileID: 0}
+  hoverPrefab: {fileID: 1085747299669663197, guid: 137fcf66183194b5ab5f0fc33e3915a2,
+    type: 3}
 --- !u!82 &1861216873197188713
 AudioSource:
   m_ObjectHideFlags: 0

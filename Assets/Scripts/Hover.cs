@@ -12,7 +12,7 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     private SpriteRenderer spriteRenderer;
     private Color hoverColor = new Color(0.6f, 0.8f, 0.6f);
 
-    void Start()
+    protected void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
