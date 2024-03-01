@@ -17,11 +17,17 @@ public class Hover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    /// <summary>
+    /// カーソルがオブジェクトに重なった際に呼ばれる
+    /// </summary>
     protected virtual void SetHover()
     {
         spriteRenderer.color = hoverColor;
     }
 
+    /// <summary>
+    /// カーソルがオブジェクトからはなれた際に呼ばれる
+    /// </summary>
     protected virtual void UnsetHover()
     {
         spriteRenderer.color = Color.white;

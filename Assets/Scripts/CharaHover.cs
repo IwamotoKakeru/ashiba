@@ -2,6 +2,7 @@
 
 /// <summary>
 /// キャラクター専用のホバー
+/// クリックされれば死体が生成されるであろう位置に仮想的なオブジェクトを配置
 /// </summary>
 public class CharaHover : Hover
 {
@@ -19,20 +20,19 @@ public class CharaHover : Hover
     {
         base.SetHover();
         hoverObject.SetActive(true);
-        Debug.Log("set");
     }
 
     protected override void UnsetHover()
     {
         base.UnsetHover();
         hoverObject.SetActive(false);
-        Debug.Log("unset");
     }
 
     void Update()
     {
         if (hoverObject.activeSelf)
         {
+            // 死体が生成されるであろう位置にオブジェクトを配置
             hoverObject.transform.position = Utility.Stage.GetRoundedPos(this.transform.position);
         }
     }
