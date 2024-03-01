@@ -1,7 +1,7 @@
 ﻿using System;
 
 /// 実装:岩本
-namespace Constants
+namespace Utility
 {
     /// <summary>
     /// ゲームオブジェクト用タグ

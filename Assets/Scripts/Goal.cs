@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using Constants;
+using Utility;
 
 /// <summary>
 /// ゴール用のスクリプト
