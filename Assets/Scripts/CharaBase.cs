@@ -134,29 +134,10 @@ public class CharaBase : MonoBehaviour, IPointerDownHandler
         rb.velocity = new Vector2(rb.velocity.x, ySpeed);
     }
 
-    private float NumericRounder(float value)
-    {
-        //小数点以下のみ取り出し
-        float decimicalVal = value % 1;
-
-        if (decimicalVal == 0.5f)
-        {
-            return value;
-        }
-        else
-        {
-            return Mathf.Floor(value) + 0.5f;
-        }
-    }
-
     //死体を丁度いい位置に生成する関数
     void RoundPositonInstantiate()
     {
-        Vector3 instantPosition = transform.position;
-        instantPosition.x = NumericRounder(instantPosition.x);
-        instantPosition.y = NumericRounder(instantPosition.y);
-
-        Instantiate(corpse, instantPosition, Quaternion.identity);
+        Instantiate(corpse, Utility.Stage.GetRoundedPos(transform.position), Quaternion.identity);
     }
 
     // クリックされた際の挙動

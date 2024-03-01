@@ -1,11 +1,16 @@
 ﻿using UnityEngine;
 
 /// <summary>
-/// 
+/// キャラクター専用のホバー
 /// </summary>
 public class CharaHover : Hover
 {
     public GameObject virtualObject;
+
+    void Start()
+    {
+        Instantiate(virtualObject);
+    }
 
     protected override void SetHover()
     {
