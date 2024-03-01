@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 7047475473061608513}
   - component: {fileID: 7047475473061608516}
   - component: {fileID: 7047475473061608512}
-  - component: {fileID: 7222705925193612436}
+  - component: {fileID: 7443851066398533349}
   - component: {fileID: 1861216873197188713}
   m_Layer: 1
   m_Name: Square
@@ -291,7 +291,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.45
---- !u!114 &7222705925193612436
+--- !u!114 &7443851066398533349
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -300,9 +300,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7047475473061608542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b59a75e23b94041f89ecf4aa85fb21d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8ca63323c71264062a843e68ada18950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverPrefab: {fileID: 1085747299669663197, guid: 137fcf66183194b5ab5f0fc33e3915a2,
+    type: 3}
 --- !u!82 &1861216873197188713
 AudioSource:
   m_ObjectHideFlags: 0

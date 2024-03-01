@@ -99,5 +99,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bomber Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 7443851066398533349, guid: 014358e6bb5c44ed4a48335e74ec36d6,
+        type: 3}
+      propertyPath: hoverPrefab
+      value: 
+      objectReference: {fileID: 2621302218108473426, guid: b7650deab6fae409bb609bb7d925e630,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 014358e6bb5c44ed4a48335e74ec36d6, type: 3}

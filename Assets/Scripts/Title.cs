@@ -17,7 +17,7 @@ public class Title : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            StartCoroutine(fade.FadeOutCorutine(() => SceneManager.LoadScene((int)Constants.SceneIndex.Turtorial)));
+            StartCoroutine(fade.FadeOutCorutine(() => SceneManager.LoadScene((int)Utility.SceneIndex.Turtorial)));
         }
     }
 }

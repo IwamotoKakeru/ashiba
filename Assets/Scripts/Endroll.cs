@@ -48,6 +48,6 @@ public class Endroll : MonoBehaviour
         Instantiate(Logo, logoPos, Quaternion.identity);
         ChangeText(company);
         yield return new WaitForSeconds(intervalSecond * 3);
-        SceneManager.LoadScene((int)Constants.SceneIndex.Title);
+        SceneManager.LoadScene((int)Utility.SceneIndex.Title);
     }
 }

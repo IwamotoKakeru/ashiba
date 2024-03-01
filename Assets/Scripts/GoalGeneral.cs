@@ -25,7 +25,7 @@ public class GoalGeneral : MonoBehaviour
         //すべてのゴールスクリプトの取得
         //重い処理のため要改善
         goalsScripts = FindObjectsOfType<Goal>();
-        fader = GameObject.FindGameObjectWithTag(Constants.Tags.Fader);
+        fader = GameObject.FindGameObjectWithTag(Utility.Tags.Fader);
         fade = fader.GetComponent<FadeManager>();
     }
 

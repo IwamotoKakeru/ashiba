@@ -8,9 +8,9 @@ enum State
 }
 
 /// <summary>
-/// Squareを制御するAI
+/// キャラクターを制御するAI
 /// </summary>
-public class SquareAI : MonoBehaviour
+public class CharaAI : MonoBehaviour
 {
     private State currentState = State.Walking;
     private bool alongWallFlag = false;
@@ -19,14 +19,14 @@ public class SquareAI : MonoBehaviour
     private readonly float walkInput = 1.0f;
     private readonly float jumpInput = 1.0f;
 
-    Square Sq;
+    CharaBase Sq;
     public TouchChecker ground, ceiling, wall;
 
     private bool isGround, isWall;
 
     void Start()
     {
-        Sq = gameObject.GetComponent<Square>();
+        Sq = gameObject.GetComponent<CharaBase>();
     }
 
     void Initialize()
