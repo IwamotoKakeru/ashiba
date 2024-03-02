@@ -177,7 +177,8 @@ MonoBehaviour:
   jumpSE: {fileID: 8300000, guid: 2135c20071cdec446bb9b255328f8b93, type: 3}
   ground: {fileID: 7047475473433119924}
   ceiling: {fileID: 7047475474266225027}
-  corpse: {fileID: 346023160683097174, guid: b10a893c6ae734d2e8b5debb8d935e41, type: 3}
+  corpsePrefab: {fileID: 346023160683097174, guid: b10a893c6ae734d2e8b5debb8d935e41,
+    type: 3}
   jumpCurve:
     serializedVersion: 2
     m_Curve:
