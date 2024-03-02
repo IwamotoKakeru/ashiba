@@ -9,9 +9,8 @@ public class CharaHover : Hover
     public GameObject hoverPrefab;
     private GameObject hoverObject;
 
-    new void Start()
+    void Awake()
     {
-        base.Start();
         hoverObject = Instantiate(hoverPrefab);
         hoverObject.SetActive(false);
     }
@@ -35,6 +34,13 @@ public class CharaHover : Hover
             // 死体が生成されるであろう位置にオブジェクトを配置
             hoverObject.transform.position = Utility.Stage.GetRoundedPos(this.transform.position);
         }
+    }
+
+    void OnDisable()
+    {
+        Debug.Log(hoverObject);
+        if (hoverObject.activeSelf)
+            hoverObject.SetActive(false);
     }
 
 }

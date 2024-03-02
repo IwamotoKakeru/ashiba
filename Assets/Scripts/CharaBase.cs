@@ -18,7 +18,8 @@ public class CharaBase : MonoBehaviour, IPointerDownHandler
 
     //GameObjects
     public TouchChecker ground, ceiling;
-    public GameObject corpse;
+    public GameObject corpsePrefab;
+    private GameObject corpseObject;
 
     // 移動用変数
     private float fallSpeed = 2.0f;
@@ -38,6 +39,12 @@ public class CharaBase : MonoBehaviour, IPointerDownHandler
     public AnimationCurve jumpCurve;
 
     private float xSpeed, ySpeed;
+
+    void Awake()
+    {
+        corpseObject = Instantiate(corpsePrefab);
+        corpseObject.SetActive(false);
+    }
 
     void Start()
     {
@@ -137,7 +144,8 @@ public class CharaBase : MonoBehaviour, IPointerDownHandler
     //死体を丁度いい位置に生成する関数
     void RoundPositonInstantiate()
     {
-        Instantiate(corpse, Utility.Stage.GetRoundedPos(transform.position), Quaternion.identity);
+        corpseObject.transform.position = Utility.Stage.GetRoundedPos(this.transform.position);
+        corpseObject.SetActive(true);
     }
 
     // クリックされた際の挙動
