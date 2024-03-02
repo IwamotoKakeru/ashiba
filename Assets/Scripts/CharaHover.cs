@@ -37,4 +37,9 @@ public class CharaHover : Hover
         }
     }
 
+    void OnDisable()
+    {
+        hoverObject.SetActive(false);
+    }
+
 }
