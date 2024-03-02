@@ -40,13 +40,17 @@ public class CharaBase : MonoBehaviour, IPointerDownHandler
 
     private float xSpeed, ySpeed;
 
+    void Awake()
+    {
+        corpseObject = Instantiate(corpsePrefab);
+        corpseObject.SetActive(false);
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         audioSC = GetComponent<AudioSource>();
-        corpseObject = Instantiate(corpsePrefab);
-        corpseObject.SetActive(false);
     }
 
     /// <summary>

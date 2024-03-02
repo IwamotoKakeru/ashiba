@@ -9,9 +9,8 @@ public class CharaHover : Hover
     public GameObject hoverPrefab;
     private GameObject hoverObject;
 
-    new void Start()
+    void Awake()
     {
-        base.Start();
         hoverObject = Instantiate(hoverPrefab);
         hoverObject.SetActive(false);
     }
@@ -39,7 +38,9 @@ public class CharaHover : Hover
 
     void OnDisable()
     {
-        hoverObject.SetActive(false);
+        Debug.Log(hoverObject);
+        if (hoverObject.activeSelf)
+            hoverObject.SetActive(false);
     }
 
 }
