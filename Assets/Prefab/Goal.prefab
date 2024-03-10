@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goal: {fileID: 8300000, guid: 96362fd79634e1b4da0c1f5cd82d56f0, type: 3}
+  badGoal: {fileID: 8300000, guid: 74e698772a036cd48965f8d5c659626c, type: 3}
   audioSource: {fileID: 4477593899322352043}
   goalNumGetter: 1
 --- !u!61 &4477593899322352038
