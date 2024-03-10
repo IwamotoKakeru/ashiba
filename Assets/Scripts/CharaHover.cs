@@ -9,6 +9,7 @@ public class CharaHover : Hover
     public GameObject hoverPrefab;
     private GameObject hoverObject;
 
+    //TODO: ホバーオブジェクトを生成するタイミングのせいでエラーが発生している
     void Awake()
     {
         hoverObject = Instantiate(hoverPrefab);
