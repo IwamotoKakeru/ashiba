@@ -52,7 +52,14 @@ public class Goal : MonoBehaviour
             goalNum--;
             collision.gameObject.SetActive(false);
             PlayGoalSound();
-            numDisplay.DisplayInt(goalNum);
+            if (goalNum >= 0)
+            {
+                numDisplay.DisplayInt(goalNum);
+            }
+            else
+            {
+                numDisplay.DisplayInt(goalNum, ColorUtility.ToHtmlStringRGB(Color.red));
+            }
         }
     }
 }
