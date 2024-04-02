@@ -11,17 +11,16 @@ public class Oscillator : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Oscillator oscillator;
     private float elapsedTime = 0.0f;
-    private float oscillateTime = 3.0f;
-
-    private float angularSpeed = 64.0f;
-    private float maxAmplitude = 0.2f;
-    private float dumpingCoefficient = 2.0f;
+    [SerializeField] private float oscillateTime = 3.0f;
+    [SerializeField] private float angularSpeed = 64.0f;
+    [SerializeField] private float maxAmplitude = 0.2f;
+    [SerializeField] private float dumpingCoefficient = 2.0f;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         oscillator = GetComponent<Oscillator>();
-        Invoke("StopOscillate", oscillateTime);
+        Invoke(nameof(StopOscillate), oscillateTime);
     }
 
     /// <summary>

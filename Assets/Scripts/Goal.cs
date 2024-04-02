@@ -8,6 +8,7 @@ using Utility;
 public class Goal : MonoBehaviour
 {
     public AudioClip goal;
+    public AudioClip badGoal;
     public AudioSource audioSource;
 
     public int goalNumGetter = 1;// 変数名が規則違反だが、変更するとインスペクタ上の値をすべて変更する必要があるため保留
@@ -32,14 +33,37 @@ public class Goal : MonoBehaviour
         else return false;
     }
 
+    void PlayGoalSound()
+    {
+        if (goalNum >= 0)
+        {
+            audioSource.PlayOneShot(goal);
+        }
+        else
+        {
+            audioSource.PlayOneShot(badGoal);
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag(Tags.Player))
         {
             goalNum--;
             collision.gameObject.SetActive(false);
-            audioSource.PlayOneShot(goal);
-            numDisplay.DisplayInt(goalNum);
+            PlayGoalSound();
+            if (goalNum > 0)
+            {
+                numDisplay.DisplayInt(goalNum);
+            }
+            else if (goalNum == 0)
+            {
+                numDisplay.DisplayInt(goalNum, ColorUtility.ToHtmlStringRGB(Color.yellow));
+            }
+            else
+            {
+                numDisplay.DisplayInt(goalNum, ColorUtility.ToHtmlStringRGB(Color.red));
+            }
         }
     }
 }
