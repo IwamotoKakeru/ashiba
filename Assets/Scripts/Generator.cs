@@ -22,10 +22,10 @@ public class Generator : MonoBehaviour, IPointerDownHandler
     private List<GameObject> objectPool = new List<GameObject>();
     private StringDisplay numDisplay;
     private AudioSource audioSource;
-    public AudioClip generateSE;
+    public AudioClip generateSE;    // 生成するオブジェクトによって音を変えるためpublic
+    private Hover hoverComponent;
 
-    // インスペクタから取得するため自動実装プロパティのように扱う
-    public int MaxGenerateNum = 3;
+    public int MaxGenerateNum = 3;  // インスペクタから取得するため自動実装プロパティのように扱う
     private int maxGenerateNum = 1;
     private int generatedNum = 0;
 
@@ -55,8 +55,14 @@ public class Generator : MonoBehaviour, IPointerDownHandler
         audioSource.PlayOneShot(generateSE);
         objectPool.First().SetActive(true);
         objectPool.RemoveAt(0);
+
         generatedNum += 1;
-        numDisplay.DisplayInt(maxGenerateNum - generatedNum);
+        int remainNum = maxGenerateNum - generatedNum;
+        numDisplay.DisplayInt(remainNum);
+        if (remainNum <= 0)
+        {
+            hoverComponent.SetDisable();
+        }
     }
 
     // numDisplayに正常に表示させるため、Awakeで数値を取得し、Startで反映させる
@@ -70,6 +76,7 @@ public class Generator : MonoBehaviour, IPointerDownHandler
     {
         numDisplay.DisplayInt(maxGenerateNum);
         audioSource = GetComponent<AudioSource>();
+        hoverComponent = GetComponent<Hover>();
     }
 
     // クリックされた際の挙動
