@@ -61,7 +61,7 @@ public class Generator : MonoBehaviour, IPointerDownHandler
         numDisplay.DisplayInt(remainNum);
         if (remainNum <= 0)
         {
-            hoverComponent.enabled = false;
+            hoverComponent.SetDisable();
         }
     }
 
