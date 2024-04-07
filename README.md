@@ -20,6 +20,19 @@ Plastic SCMのレポジトリとGitHubレポジトリを同期させたことで
 
 対応デバイス：PC、スマートフォン
 
-この作品はUnity1週間ゲームジャム お題「ためる」の投稿作品です
+この作品はUnity1週間ゲームジャム お題「ためる」へ投稿された作品を改良しているものです。
 
 [このイベントでの結果: 27/338位, 楽しさ14/338位, 斬新さ 27/338位](https://unityroom.com/unity1weeks/56/top)
+
+
+## 環境構築
+
+### Unity
+UnityHubをダウンロードした後、以下からunity 2019.4.31f1とWebGL Supportをダウンロード
+
+https://unity.com/releases/editor/qa/lts-releases?version=2019.4
+
+レポジトリをクローンし、UnityHubから開く
+
+Game画面の解像度を960x540に設定
+

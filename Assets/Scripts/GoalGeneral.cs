@@ -12,7 +12,8 @@ public class GoalGeneral : MonoBehaviour
     private Goal[] goalsScripts;
     private bool goaledFlag = false;
     private int sceneNum;
-    public GameObject clearLogo;
+    public GameObject clearLogoPrefab;
+    private GameObject clearLogo;
     private GameObject fader;
     private FadeManager fade;
 
@@ -25,8 +26,11 @@ public class GoalGeneral : MonoBehaviour
         //すべてのゴールスクリプトの取得
         //重い処理のため要改善
         goalsScripts = FindObjectsOfType<Goal>();
-        fader = GameObject.FindGameObjectWithTag(Constants.Tags.Fader);
+        fader = GameObject.FindGameObjectWithTag(Utility.Tags.Fader);
         fade = fader.GetComponent<FadeManager>();
+
+        clearLogo = Instantiate(clearLogoPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        clearLogo.SetActive(false);
     }
 
     bool GoalCheck()
@@ -50,7 +54,7 @@ public class GoalGeneral : MonoBehaviour
 
     private IEnumerator GoToNextScene()
     {
-        Instantiate(clearLogo, new Vector3(0, 0, 0), Quaternion.identity);
+        clearLogo.SetActive(true);
         yield return new WaitForSeconds(intervalTime);
         StartCoroutine(fade.FadeOutCorutine(() => { SceneManager.LoadScene(sceneNum + 1); }));
         yield return null;

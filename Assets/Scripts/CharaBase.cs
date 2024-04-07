@@ -2,10 +2,10 @@
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// 歩いてジャンプするキャラクタ
+/// キャラクターの基本動作
 /// </summary>
 /// 実装:岩本
-public class Square : MonoBehaviour, IPointerDownHandler
+public class CharaBase : MonoBehaviour, IPointerDownHandler
 {
 
     //AudioCrips
@@ -18,7 +18,8 @@ public class Square : MonoBehaviour, IPointerDownHandler
 
     //GameObjects
     public TouchChecker ground, ceiling;
-    public GameObject corpse;
+    public GameObject corpsePrefab;
+    private GameObject corpseObject;
 
     // 移動用変数
     private float fallSpeed = 2.0f;
@@ -38,6 +39,12 @@ public class Square : MonoBehaviour, IPointerDownHandler
     public AnimationCurve jumpCurve;
 
     private float xSpeed, ySpeed;
+
+    void Awake()
+    {
+        corpseObject = Instantiate(corpsePrefab);
+        corpseObject.SetActive(false);
+    }
 
     void Start()
     {
@@ -134,29 +141,13 @@ public class Square : MonoBehaviour, IPointerDownHandler
         rb.velocity = new Vector2(rb.velocity.x, ySpeed);
     }
 
-    private float NumericRounder(float value)
-    {
-        //小数点以下のみ取り出し
-        float decimicalVal = value % 1;
-
-        if (decimicalVal == 0.5f)
-        {
-            return value;
-        }
-        else
-        {
-            return Mathf.Floor(value) + 0.5f;
-        }
-    }
-
-    //死体を丁度いい位置に生成する関数
+    /// <summary>
+    /// 死体をグリッドとあった位置に配置する関数
+    /// </summary>
     void RoundPositonInstantiate()
     {
-        Vector3 instantPosition = transform.position;
-        instantPosition.x = NumericRounder(instantPosition.x);
-        instantPosition.y = NumericRounder(instantPosition.y);
-
-        Instantiate(corpse, instantPosition, Quaternion.identity);
+        corpseObject.transform.position = Utility.Stage.GetRoundedPos(this.transform.position);
+        corpseObject.SetActive(true);
     }
 
     // クリックされた際の挙動
