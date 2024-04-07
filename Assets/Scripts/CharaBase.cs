@@ -141,7 +141,9 @@ public class CharaBase : MonoBehaviour, IPointerDownHandler
         rb.velocity = new Vector2(rb.velocity.x, ySpeed);
     }
 
-    //死体を丁度いい位置に生成する関数
+    /// <summary>
+    /// 死体をグリッドとあった位置に配置する関数
+    /// </summary>
     void RoundPositonInstantiate()
     {
         corpseObject.transform.position = Utility.Stage.GetRoundedPos(this.transform.position);
