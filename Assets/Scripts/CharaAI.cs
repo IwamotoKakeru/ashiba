@@ -5,6 +5,7 @@ enum State
     Walking,
     Jumping,
     Falling,
+    Stop,
 }
 
 /// <summary>
@@ -21,6 +22,7 @@ public class CharaAI : MonoBehaviour
 
     CharaBase Sq;
     public TouchChecker ground, ceiling, wall;
+    public TrapedChecker trapedChecker;
 
     private bool isGround, isWall;
 
@@ -34,6 +36,7 @@ public class CharaAI : MonoBehaviour
         walkVelocity = walkDirection * walkInput;
         isGround = ground.IsTouching();
         isWall = wall.IsTouching();
+
         Sq.Initialize();
     }
 
@@ -42,6 +45,11 @@ public class CharaAI : MonoBehaviour
     /// </summary>
     void WalkAndJumpProgress()
     {
+        if (trapedChecker.CheckTraped())
+        {
+            currentState = State.Stop;
+            Debug.Log(currentState);
+        }
         switch (currentState)
         {
             case State.Walking:
@@ -87,6 +95,11 @@ public class CharaAI : MonoBehaviour
                 Sq.Jump(0.0f);
                 // 接地したら歩く
                 if (isGround) currentState = State.Walking;
+                break;
+
+            case State.Stop:
+                Sq.Walk(0.0f);
+                Sq.Jump(0.0f);
                 break;
 
             default:
