@@ -45,14 +45,13 @@ public class CharaAI : MonoBehaviour
     /// </summary>
     void WalkAndJumpProgress()
     {
-        if (trapedChecker.CheckTraped())
-        {
-            currentState = State.Stop;
-            Debug.Log(currentState);
-        }
         switch (currentState)
         {
             case State.Walking:
+                if (trapedChecker.CheckTraped())
+                {
+                    currentState = State.Stop;
+                }
                 Sq.Walk(walkVelocity);
                 Sq.Jump(0.0f);
 
@@ -100,6 +99,7 @@ public class CharaAI : MonoBehaviour
             case State.Stop:
                 Sq.Walk(0.0f);
                 Sq.Jump(0.0f);
+                if (!trapedChecker.CheckTraped()) currentState = State.Walking;
                 break;
 
             default:
