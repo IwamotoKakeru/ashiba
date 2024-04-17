@@ -31,9 +31,13 @@ public class TouchChecker : MonoBehaviour
     /// <summary>
     /// 触れているかどうかを返す
     /// </summary>
+    /// <remarks>
+    /// 生成された際にTouchCheckerがアタッチされたオブジェクトと何かしらが接触していると真を返し続けることがあります
+    /// </remarks>
     /// <returns>触れているなら真</returns>
     public bool IsTouching()
     {
+        /// TODO: 生成時にコライダーが何かと接していると正常に動作しないバグを修正
         if (enterFlag || stayFlag) isTouch = true;
         else if (exitFlag) isTouch = false;
 
