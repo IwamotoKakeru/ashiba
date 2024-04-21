@@ -1,11 +1,11 @@
 name: Build
 
 on:
-  # developへのPRマージをトリガーとしてワークフローを開始する
+  # developへのPR作成をトリガーとしてワークフローを開始する
   pull_request:
     branches:
       - develop
-    types: [closed]
+    types: [opened]
 
   # 手動実行デバッグ用
   workflow_dispatch: {}
@@ -26,4 +26,11 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           targetPlatform: WebGL
-          unityVersion: 2019.4.31f1 # ここは各自プロジェクトに合わせて設定
+          unityVersion: 2019.4.31f1
+      # Upload artifact (Unity_v2019.4.31f1)
+      - name: Upload the WebGL Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ env.target }}
+          path: ${{ env.target }}
+          
