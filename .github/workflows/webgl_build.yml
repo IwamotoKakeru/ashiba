@@ -1,0 +1,29 @@
+name: Build
+
+on:
+  # developへのPRマージをトリガーとしてワークフローを開始する
+  pull_request:
+    branches:
+      - develop
+    types: [closed]
+
+  # 手動実行デバッグ用
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    name: Build my project
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v2
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        with:
+          targetPlatform: WebGL
+          unityVersion: 2019.4.31f1 # ここは各自プロジェクトに合わせて設定
