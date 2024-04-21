@@ -5,11 +5,14 @@ on:
   pull_request:
     branches:
       - develop
-    types: [opened]
+    types: [opened,synchronize]
 
   # 手動実行デバッグ用
   workflow_dispatch: {}
-
+  
+env:
+  target: Dev_Build
+  
 jobs:
   build:
     name: Build my project
