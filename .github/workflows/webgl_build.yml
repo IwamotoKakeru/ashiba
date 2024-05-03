@@ -1,7 +1,7 @@
 name: Build
 
 on:
-  # developへのPR作成をトリガーとしてワークフローを開始する
+  # developへのPR作成と更新をトリガーとしてワークフローを開始する
   pull_request:
     branches:
       - develop
