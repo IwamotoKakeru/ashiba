@@ -8,8 +8,27 @@ public class TimeCtrl : MonoBehaviour
 {
     private const float defaultFastTimeScale = 4.0f;
     private const float defaultTimeScale = 1.0f;
+
+    private BgmManager bgmManager;
+
+    void Start()
+    {
+        // テストシーンなどでBgmManagerが存在しないときに備える
+        try
+        {
+            bgmManager = GameObject.Find("BgmManager").GetComponent<BgmManager>();
+        }
+        catch (System.NullReferenceException e)
+        {
+            bgmManager = null;
+            Debug.Log(e);
+            Debug.Log("BgmManagerが見つかりませんでした");
+        }
+    }
     void Update()
     {
+        // 1 は右クリック
+        // Unity側のKeyCodeで定義がないのでハードコードしている
         FastFoward(Input.GetMouseButton(1));
     }
 
@@ -24,10 +43,13 @@ public class TimeCtrl : MonoBehaviour
         if (toggleFlag)
         {
             Time.timeScale = fastTimeScale;
+            // TODO: null条件演算子はUnityでは非推奨であるため修正する
+            bgmManager?.SetPitch(fastTimeScale);
         }
         else
         {
             Time.timeScale = defaultTimeScale;
+            bgmManager?.SetPitch(defaultTimeScale);
         }
     }
 
@@ -41,6 +63,7 @@ public class TimeCtrl : MonoBehaviour
         if (stopFlag)
         {
             Time.timeScale = 0;
+            bgmManager?.SetPitch(defaultTimeScale);
         }
         else
         {
