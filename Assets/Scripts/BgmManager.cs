@@ -65,7 +65,7 @@ public class BgmManager : MonoBehaviour
             case SceneIndex.Ending:
                 audioSource.clip = ending;
                 CountinuPlay();
-                SetPitch(1.0f);
+                SetPitch();
                 break;
 
             default:
@@ -79,7 +79,7 @@ public class BgmManager : MonoBehaviour
     /// <summary>
     /// BGMの速さを変更する
     /// </summary>
-    /// <param name="pitch">速度</param>
+    /// <param name="pitch">速度 無引数なら1.0</param>
     public void SetPitch(float pitch = 1.0f)
     {
         audioSource.pitch = pitch;

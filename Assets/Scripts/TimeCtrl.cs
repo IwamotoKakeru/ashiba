@@ -22,7 +22,7 @@ public class TimeCtrl : MonoBehaviour
         {
             bgmManager = null;
             Debug.Log(e);
-            Debug.Log("BgmManagerが見つかりませんでした");
+            Debug.Log("BgmManagerが見つからなかったためbgmManagerをnullとして扱います");
         }
     }
     void Update()
@@ -49,7 +49,7 @@ public class TimeCtrl : MonoBehaviour
         else
         {
             Time.timeScale = defaultTimeScale;
-            bgmManager?.SetPitch(defaultTimeScale);
+            bgmManager?.SetPitch();
         }
     }
 
@@ -63,7 +63,7 @@ public class TimeCtrl : MonoBehaviour
         if (stopFlag)
         {
             Time.timeScale = 0;
-            bgmManager?.SetPitch(defaultTimeScale);
+            bgmManager?.SetPitch();
         }
         else
         {
