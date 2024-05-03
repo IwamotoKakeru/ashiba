@@ -24,9 +24,11 @@ jobs:
 
       # Build
       - name: Build project
-        uses: game-ci/unity-builder@v2
+        uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
           unityVersion: 2019.4.31f1
@@ -34,5 +36,5 @@ jobs:
       - name: Upload the WebGL Build
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ env.target }}
+          name: Build
           path: build
