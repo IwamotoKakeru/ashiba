@@ -1,4 +1,4 @@
-﻿using UnityEditor.Playables;
+﻿using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utility;
@@ -11,7 +11,7 @@ public class StopWatch : MonoBehaviour
 {
     static bool dontDestroyEnabled = false;
 
-    System.Diagnostics.Stopwatch stopWatch = new System.Diagnostics.Stopwatch();
+    public Stopwatch stopWatch = new Stopwatch();
 
     StringDisplay stringDisplay;
 
@@ -33,7 +33,8 @@ public class StopWatch : MonoBehaviour
         SceneManager.activeSceneChanged += OnActiveSceneChanged;
     }
 
-    //シーンが切り替わった瞬間に呼ばれるメソッド　
+    // シーンが切り替わった瞬間に呼ばれるメソッド　
+    // 切り替わった際にしか呼ばれないので注意
     void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
     {
         ToggleCtrl(nextScene.buildIndex);
@@ -56,7 +57,8 @@ public class StopWatch : MonoBehaviour
                 break;
 
             default:
-                // ステージ
+                // デバック向けにどのステージから始めてもタイマーを起動するように
+                stopWatch.Start();
                 break;
         }
     }
