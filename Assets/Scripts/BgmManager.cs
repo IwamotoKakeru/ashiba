@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using Utility;
 
 /// <summary>
 /// 全ステージのBGMを管理する
@@ -20,9 +21,7 @@ public class BgmManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-
     private AudioSource audioSource;
-
     public AudioClip stage;
     public AudioClip ending;
 
@@ -35,6 +34,12 @@ public class BgmManager : MonoBehaviour
 
         //エディター上でBGMを流すために使用
         PlayBgm(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    //シーンが切り替わった瞬間に呼ばれるメソッド　
+    void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
+    {
+        PlayBgm(nextScene.buildIndex);
     }
 
     /// <summary>
@@ -51,47 +56,33 @@ public class BgmManager : MonoBehaviour
 
     void PlayBgm(int buildIndex)
     {
-        if (buildIndex == (int)Utility.SceneIndex.Title)
+        switch ((SceneIndex)buildIndex)
         {
-            //タイトル
-            audioSource.Stop();
-        }
-        else if (buildIndex == (int)Utility.SceneIndex.Ending)
-        {
-            //エンディング
-            audioSource.clip = ending;
-            CountinuPlay();
-        }
-        else
-        {
-            //ステージ
-            audioSource.clip = stage;
-            CountinuPlay();
-        }
-    }
+            case SceneIndex.Title:
+                audioSource.Stop();
+                break;
 
-    //シーンが切り替わった瞬間に呼ばれるメソッド　
-    void OnActiveSceneChanged(Scene prevScene, Scene nextScene)
-    {
-        PlayBgm(nextScene.buildIndex);
+            case SceneIndex.Ending:
+                audioSource.clip = ending;
+                CountinuPlay();
+                SetPitch(1.0f);
+                break;
+
+            default:
+                //ステージ
+                audioSource.clip = stage;
+                CountinuPlay();
+                break;
+        }
     }
 
     /// <summary>
     /// BGMの速さを変更する
     /// </summary>
     /// <param name="pitch">速度</param>
-    public void ChangePitch(float pitch = 1.0f)
+    public void SetPitch(float pitch = 1.0f)
     {
         audioSource.pitch = pitch;
-    }
-
-
-    /// <summary>
-    /// 右クリックした際にBGMも早送りに
-    /// </summary>
-    void Update()
-    {
-        ChangePitch(Time.timeScale);
     }
 
 }
