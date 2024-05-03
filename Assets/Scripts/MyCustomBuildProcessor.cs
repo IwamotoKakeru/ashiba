@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+﻿#if UNITY_EDITOR_OSX
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.Build.Reporting;
