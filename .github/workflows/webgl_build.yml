@@ -31,9 +31,9 @@ jobs:
           UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
           targetPlatform: WebGL
-          unityVersion: 2019.4.31f1
+          unityVersion: 2022.3.6f1
 
-      # Upload artifact (Unity_v2019.4.31f1)
+      # Upload artifact
       - name: Upload the WebGL Build
         uses: actions/upload-artifact@v3
         with:
