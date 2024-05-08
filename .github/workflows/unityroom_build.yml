@@ -1,11 +1,12 @@
-name: Build
+name: Build for unityroom
 
 on:
-  # developへのPR作成と更新をトリガーとしてワークフローを開始する
+  # developへのPRマージをトリガーとしてワークフローを開始する
   pull_request:
     branches:
       - develop
-    types: [opened, synchronize]
+    types:
+      - closed
 
   # 手動実行デバッグ用
   workflow_dispatch: {}
@@ -21,11 +22,6 @@ jobs:
       # Checkout
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      # Compression FormatをGzipからDisabledに書き換え
-      - name: Set CompressionFormat to Disabled
-        run: |
-          sed -i -e 's/webGLCompressionFormat: ./webGLCompressionFormat: 2/' ProjectSettings/ProjectSettings.asset
 
       # Build
       - name: Build project
@@ -45,10 +41,3 @@ jobs:
         with:
           name: Build
           path: build
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.3
-        with:
-          # GitHub Pages　デプロイ用のブランチ
-          branch: gh-pages
-          folder: build
