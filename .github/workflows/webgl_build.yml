@@ -22,6 +22,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # Compression FormatをGzipからDisabledに書き換え
+      - name: Set CompressionFormat to Disabled
+        run: |
+          sed -i -e 's/webGLCompressionFormat: ./webGLCompressionFormat: 2/' ProjectSettings/ProjectSettings.asset
+
       # Build
       - name: Build project
         uses: game-ci/unity-builder@v4
@@ -32,6 +37,7 @@ jobs:
         with:
           targetPlatform: WebGL
           unityVersion: 2022.3.6f1
+          allowDirtyBuild: true
 
       # Upload artifact
       - name: Upload the WebGL Build
