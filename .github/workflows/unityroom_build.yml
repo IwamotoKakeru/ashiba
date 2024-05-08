@@ -1,0 +1,43 @@
+name: Build for unityroom
+
+on:
+  # developへのPRマージをトリガーとしてワークフローを開始する
+  pull_request:
+    branches:
+      - develop
+    types:
+      - closed
+
+  # 手動実行デバッグ用
+  workflow_dispatch: {}
+
+env:
+  target: Dev_Build
+
+jobs:
+  build:
+    name: Build my project
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Build
+      - name: Build project
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          targetPlatform: WebGL
+          unityVersion: 2022.3.6f1
+          allowDirtyBuild: true
+
+      # Upload artifact
+      - name: Upload the WebGL Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: Build
+          path: build
