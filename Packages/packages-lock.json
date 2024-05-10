@@ -185,6 +185,13 @@
         "com.unity.modules.imgui": "1.0.0"
       }
     },
+    "com.unityroom.client": {
+      "version": "https://github.com/naichilab/unityroom-client-library.git?path=Assets/unityroom",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "c4dea57e1c27567bac512e090a356b08abf83d0b"
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
