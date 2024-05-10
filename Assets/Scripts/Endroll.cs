@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Utility;
+using unityroom.Api;
 
 /// 実装:岩本
 /// <summary>
@@ -34,8 +35,20 @@ public class Endroll : MonoBehaviour
     void Start()
     {
         tex = GetComponent<Text>();
+
         stopWatch = GameObject.Find("StopWatch").GetComponent<StopWatch>().stopWatch;
-        clearTimeText = "クリアタイム\n" + stopWatch.Elapsed.ToString(@"mm\:ss\.ff") + "\nCongratulation!!!";
+        float totalSec = (float)(stopWatch.Elapsed.TotalMilliseconds / 1000);
+
+        clearTimeText = "クリアタイム\n" + stopWatch.Elapsed.ToString(@"mm\:ss\.ff") + "\nCongratulation!!!\n";
+        clearTimeText += totalSec.ToString() + "秒としてランキングに掲載しました";
+
+#if UNITY_EDITOR
+        // 何もしない
+        // エディター上で実行した際のタイムを登録しないようにするため
+#else
+        // unityroomのランキングへ登録
+        UnityroomApiClient.Instance.SendScore(1, totalSec, ScoreboardWriteMode.HighScoreDesc);
+#endif
 
         StartCoroutine(RunEndroll());
     }
