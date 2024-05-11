@@ -11,11 +11,6 @@ public class Cursor : MonoBehaviour
 
     private Vector3 mousePosition, target;
 
-    protected bool CheckWebGLPlatform()
-    {
-        return Application.platform == RuntimePlatform.WebGLPlayer;
-    }
-
     void Start()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
