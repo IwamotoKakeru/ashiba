@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Utility;
 
 /// 実装:岩本
 /// <summary>
@@ -7,6 +8,16 @@
 public class Cursor : MonoBehaviour
 {
     private Vector3 mousePosition, target;
+
+    void Start()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if (WebGL.CheckTouchDevice())
+        {
+            GetComponent<Cursor>().enabled = false;
+        }
+#endif
+    }
 
     void Update()
     {

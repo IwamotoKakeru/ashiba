@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 /// 実装:岩本
@@ -79,4 +80,11 @@ namespace Utility
             return roundedPos;
         }
     }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+    public static class WebGL
+    {
+        [DllImport("__Internal")] public static extern bool CheckTouchDevice();
+    }
+#endif
 }
