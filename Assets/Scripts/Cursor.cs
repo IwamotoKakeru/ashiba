@@ -1,5 +1,5 @@
-﻿using System.Runtime.InteropServices;
-using UnityEngine;
+﻿using UnityEngine;
+using Utility;
 
 /// 実装:岩本
 /// <summary>
@@ -7,14 +7,12 @@ using UnityEngine;
 /// </summary>
 public class Cursor : MonoBehaviour
 {
-    [DllImport("__Internal")] private static extern bool CheckTouchDevice();
-
     private Vector3 mousePosition, target;
 
     void Start()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        if (CheckTouchDevice())
+        if (WebGL.CheckTouchDevice())
         {
             GetComponent<Cursor>().enabled = false;
         }
