@@ -18,10 +18,12 @@ public class Cursor : MonoBehaviour
 
     void Start()
     {
-        if (CheckWebGLPlatform())
+#if UNITY_WEBGL && !UNITY_EDITOR
+        if (CheckTouchDevice())
         {
-            GetComponent<Cursor>().enabled = !CheckTouchDevice();
+            GetComponent<Cursor>().enabled = false;
         }
+#endif
     }
 
     void Update()
