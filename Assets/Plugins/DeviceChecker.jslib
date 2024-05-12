@@ -25,7 +25,10 @@ function GetDeviceType() {
 
   if (userAgent.indexOf("iphone") != -1) {
     returnStr = "iPhone";
-  } else if (userAgent.indexOf("ipad") != -1) {
+  } else if (
+    userAgent.indexOf("ipad") != -1 ||
+    (userAgent.indexOf("macintosh") > -1 && "ontouchend" in document)
+  ) {
     returnStr = "iPad";
   } else if (userAgent.indexOf("android") != -1) {
     returnStr = "Android";
