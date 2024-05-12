@@ -82,8 +82,18 @@ namespace Utility
     }
 
 #if UNITY_WEBGL && !UNITY_EDITOR
+    /// <summary>
+    /// WebGLビルド向けのUtility
+    /// </summary>
+    /// <remarks>
+    /// ビルドしたものでしか動かないため、使用する際には条件付きコンパイルを使用してエディター上での実行を回避してください
+    /// </remarks>
     public static class WebGL
     {
+        /// <summary>
+        /// タッチできるデバイスかどうかを確認します
+        /// </summary>
+        /// <returns>真ならタッチ可能</returns>
         [DllImport("__Internal")] public static extern bool CheckTouchDevice();
     }
 #endif
