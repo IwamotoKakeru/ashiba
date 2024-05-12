@@ -95,6 +95,12 @@ namespace Utility
         /// </summary>
         /// <returns>真ならタッチ可能</returns>
         [DllImport("__Internal")] public static extern bool CheckTouchDevice();
+
+        /// <summary>
+        /// デバイス種別を確認します
+        /// </summary>
+        /// <returns>デバイス種別の文字列</returns>
+        [DllImport("__Internal")] public static extern string GetDeviceType();
     }
 #endif
 }

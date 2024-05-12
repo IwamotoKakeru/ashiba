@@ -1,5 +1,3 @@
-const plugin = {};
-
 /**
  * タッチできるデバイスかどうかを確認します
  * @returns {Boolean} 真ならタッチ可能
@@ -8,32 +6,43 @@ function CheckTouchDevice() {
   var touchEvent = window.ontouchstart;
   let touchPoints = navigator.maxTouchPoints;
 
-  var userAgent = window.navigator.userAgent.toLocaleLowerCase();
-
   // 端末がタッチに対応している
   if (touchEvent !== undefined && touchPoints > 0) {
-    return true;
-  }
-
-  // iPhone
-  if (userAgent.indexOf("iphone") != -1) {
-    return true;
-  }
-
-  // iPad
-  if (userAgent.indexOf("ipad") != -1) {
-    return true;
-  }
-
-  // android端末
-  if (userAgent.indexOf("android") != -1) {
     return true;
   }
 
   return false;
 }
 
-plugin[CheckTouchDevice.name] = CheckTouchDevice;
+/**
+ * デバイス種別をUnity側で確認できる文字列にして返します
+ * @returns {string} デバイス種別
+ * @see https://docs.unity3d.com/ja/2022.3/Manual/webgl-interactingwithbrowserscripting.html
+ */
+function GetDeviceType() {
+  var returnStr;
+  var userAgent = window.navigator.userAgent.toLocaleLowerCase();
+
+  if (userAgent.indexOf("iphone") != -1) {
+    returnStr = "iPhone";
+  } else if (userAgent.indexOf("ipad") != -1) {
+    returnStr = "iPad";
+  } else if (userAgent.indexOf("android") != -1) {
+    returnStr = "Android";
+  } else {
+    returnStr = "PC";
+  }
+
+  // UTF-8形式にして返す
+  var bufferSize = lengthBytesUTF8(returnStr) + 1;
+  var buffer = _malloc(bufferSize);
+  stringToUTF8(returnStr, buffer, bufferSize);
+  return buffer;
+}
+
+const plugins = {};
+plugins[CheckTouchDevice.name] = CheckTouchDevice;
+plugins[GetDeviceType.name] = GetDeviceType;
 
 // Unity側へ反映
-mergeInto(LibraryManager.library, plugin);
+mergeInto(LibraryManager.library, plugins);
