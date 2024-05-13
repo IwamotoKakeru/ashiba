@@ -31,7 +31,11 @@ function GetDeviceType() {
   ) {
     returnStr = "iPad";
   } else if (userAgent.indexOf("android") != -1) {
-    returnStr = "Android";
+    if (userAgent.indexOf("mobile") != -1) {
+      returnStr = "Android Phone";
+    } else {
+      returnStr = "Android Tablet";
+    }
   } else {
     returnStr = "PC";
   }

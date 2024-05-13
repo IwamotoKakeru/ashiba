@@ -19,7 +19,7 @@ public class DeviceTypeText : MonoBehaviour
 
     void Start()
     {
-        text.text = "デバイス: " + deviceType;
+        text.text = "Device: " + deviceType;
     }
 
 }

@@ -3250,7 +3250,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30C7\u30D0\u30A4\u30B9: PC"
+  m_Text: 'Device: PC'
 --- !u!114 &1867554086
 MonoBehaviour:
   m_ObjectHideFlags: 0
