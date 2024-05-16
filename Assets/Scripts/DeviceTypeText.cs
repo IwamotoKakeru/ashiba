@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using Utility;
 
+/// <summary>
+/// タイトルでデバイス種別を表示するためのスクリプト
+/// </summary>
 public class DeviceTypeText : MonoBehaviour
 {
     private Text text;

@@ -101,6 +101,18 @@ namespace Utility
         /// </summary>
         /// <returns>デバイス種別の文字列</returns>
         [DllImport("__Internal")] public static extern string GetDeviceType();
+
+
+        /// <summary>
+        /// cookieにクリア回数を書き込みます
+        /// </summary>
+        [DllImport("__Internal")] public static extern void SetClearTimes(int clearTimes);
+
+        /// <summary>
+        /// cookieからクリア回数を読み込みます
+        /// </summary>
+        /// <returns>クリア回数</returns>
+        [DllImport("__Internal")] public static extern int GetClearTimes();
     }
 #endif
 }
