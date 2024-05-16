@@ -194,7 +194,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30AF\u30EA\u30A2\u56DE\u6570: -1"
+  m_Text: "\u30AF\u30EA\u30A2\u56DE\u6570: --"
 --- !u!222 &166402758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3343,7 +3343,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Device: PC'
+  m_Text: 'Device: --'
 --- !u!114 &1867554086
 MonoBehaviour:
   m_ObjectHideFlags: 0

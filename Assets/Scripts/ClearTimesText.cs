@@ -24,14 +24,13 @@ public class ClearTimesText : MonoBehaviour
         {
             // cookieにクリア回数がない場合
             WebGL.SetClearTimes(0);
-            throw;
         }
 #endif
+        text.text = "クリア回数: " + clearTimes.ToString();
     }
 
     void Start()
     {
-        text.text = "クリア回数: " + clearTimes.ToString();
     }
 
 }

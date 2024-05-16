@@ -23,7 +23,7 @@ namespace Utility
         /// <summary>
         /// ホバーのために用いる
         /// </summary>
-        [ObsoleteAttribute("現在ホバーはEventTrigger経由で使用されるため非推奨")] public const string Hover = "Hover";
+        [Obsolete("現在ホバーはEventTrigger経由で使用されるため非推奨")] public const string Hover = "Hover";
 
         /// <summary>
         /// キャラクタが歩く地面や壁等に用いる
