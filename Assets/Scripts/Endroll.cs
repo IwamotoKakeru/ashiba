@@ -29,26 +29,33 @@ public class Endroll : MonoBehaviour
     };
     private string company = "九州工業大学\nプログラミング研究会";
     private string clearTimeText;
+    private int clearTimes = -1;
 
     private Vector3 logoPos = new Vector3(0.0f, 1.6f, 0.0f);
 
-    void Start()
+    void Awake()
     {
         tex = GetComponent<Text>();
-
         stopWatch = GameObject.Find("StopWatch").GetComponent<StopWatch>().stopWatch;
-        float totalSec = (float)(stopWatch.Elapsed.TotalMilliseconds / 1000);
 
+#if UNITY_WEBGL && !UNITY_EDITOR
+        clearTimes = WebGL.GetClearTimes();
+#endif
+    }
+
+    void Start()
+    {
+        float totalSec = (float)(stopWatch.Elapsed.TotalMilliseconds / 1000);
         clearTimeText = "クリアタイム\n" + stopWatch.Elapsed.ToString(@"mm\:ss\.ff") + "\nCongratulation!!!\n";
         clearTimeText += totalSec.ToString() + "秒としてランキングに掲載しました";
 
-#if UNITY_EDITOR
-        // 何もしない
-        // エディター上で実行した際のタイムを登録しないようにするため
-#else
+#if UNITY_WEBGL && !UNITY_EDITOR
         // unityroomのランキングへ登録
         UnityroomApiClient.Instance.SendScore(1, totalSec, ScoreboardWriteMode.HighScoreDesc);
+
+        WebGL.SetClearTimes(clearTimes+1);
 #endif
+        Debug.Log(clearTimes);
 
         StartCoroutine(RunEndroll());
     }

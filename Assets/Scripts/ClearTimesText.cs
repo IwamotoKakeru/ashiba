@@ -5,24 +5,24 @@ using UnityEngine.UI;
 using Utility;
 
 /// <summary>
-/// タイトルでデバイス種別を表示するためのスクリプト
+/// タイトルでクリア回数を表示する
 /// </summary>
-public class DeviceTypeText : MonoBehaviour
+public class ClearTimesText : MonoBehaviour
 {
     private Text text;
-    private string deviceType = "PC";
+    private int clearTimes = -1;
 
     void Awake()
     {
         text = GetComponent<Text>();
 #if UNITY_WEBGL && !UNITY_EDITOR
-        deviceType = WebGL.GetDeviceType();
+        clearTimes = WebGL.GetClearTimes();
 #endif
+        text.text = "クリア回数: " + clearTimes.ToString();
     }
 
     void Start()
     {
-        text.text = "Device: " + deviceType;
     }
 
 }
