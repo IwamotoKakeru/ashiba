@@ -16,15 +16,7 @@ public class ClearTimesText : MonoBehaviour
     {
         text = GetComponent<Text>();
 #if UNITY_WEBGL && !UNITY_EDITOR
-        try
-        {
-            clearTimes = WebGL.GetClearTimes();
-        }
-        catch (System.Exception e)
-        {
-            // cookieにクリア回数がない場合
-            WebGL.SetClearTimes(0);
-        }
+        clearTimes = WebGL.GetClearTimes();
 #endif
         text.text = "クリア回数: " + clearTimes.ToString();
     }

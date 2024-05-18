@@ -1,5 +1,5 @@
 function SetClearTimes(clearTimes) {
-  document.cookie = "clear_times=" + clearTimes;
+  document.cookie = "clear_times=" + clearTimes + ";max-age=31536000";
   console.log("Set clearTimes = %d ", clearTimes);
 }
 
