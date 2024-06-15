@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 /// <summary>
 /// シーン上のすべてのゴールからクリア判定を行う
@@ -9,7 +11,7 @@ using UnityEngine.SceneManagement;
 /// 実装:岩本
 public class GoalGeneral : MonoBehaviour
 {
-    private Goal[] goalsScripts;
+    private List<Goal> goalsScripts = new List<Goal>();
     private bool goaledFlag = false;
     private int sceneNum;
     public GameObject clearLogoPrefab;
@@ -24,8 +26,8 @@ public class GoalGeneral : MonoBehaviour
     {
         sceneNum = SceneManager.GetActiveScene().buildIndex;
         //すべてのゴールスクリプトの取得
-        //重い処理のため要改善
-        goalsScripts = FindObjectsOfType<Goal>();
+        //TODO: 重い処理のため要改善
+        goalsScripts = FindObjectsOfType<Goal>().ToList();
         fader = GameObject.FindGameObjectWithTag(Utility.Tags.Fader);
         fade = fader.GetComponent<FadeManager>();
 
@@ -33,28 +35,24 @@ public class GoalGeneral : MonoBehaviour
         clearLogo.SetActive(false);
     }
 
-    bool GoalCheck()
+    bool ClearCheck()
     {
-        bool goalFlags = true;
-        foreach (Goal goalScript in goalsScripts)
-        {
-            goalFlags &= goalScript.ReturnGoalFlag();
-        }
-        return goalFlags;
+        return goalsScripts.All(goal => goal.ReturnGoalFlag());
     }
 
     void Update()
     {
-        if (GoalCheck() && !goaledFlag)
+        if (ClearCheck() && !goaledFlag)
         {
+            // クリア時の処理
             goaledFlag = true;
+            clearLogo.SetActive(true);
             StartCoroutine(GoToNextScene());
         }
     }
 
     private IEnumerator GoToNextScene()
     {
-        clearLogo.SetActive(true);
         yield return new WaitForSeconds(intervalTime);
         StartCoroutine(fade.FadeOutCorutine(() => { SceneManager.LoadScene(sceneNum + 1); }));
         yield return null;
