@@ -33,6 +33,11 @@ public class Goal : MonoBehaviour
         else return false;
     }
 
+    public void DisableGoal()
+    {
+        Debug.Log("Disabled");
+    }
+
     void PlayGoalSound()
     {
         if (goalNum >= 0)

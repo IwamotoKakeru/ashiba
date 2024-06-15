@@ -47,6 +47,7 @@ public class GoalGeneral : MonoBehaviour
             // クリア時の処理
             goaledFlag = true;
             clearLogo.SetActive(true);
+            goalsScripts.ToList().ForEach(goal => goal.DisableGoal());
             StartCoroutine(GoToNextScene());
         }
     }
