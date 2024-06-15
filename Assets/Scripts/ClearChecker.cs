@@ -9,7 +9,7 @@ using System.Collections.Generic;
 /// シーン上のすべてのゴールからクリア判定を行う
 /// </summary>
 /// 実装:岩本
-public class GoalGeneral : MonoBehaviour
+public class ClearChecker : MonoBehaviour
 {
     private List<Goal> goalsScripts = new();
     private bool goaledFlag = false;
@@ -48,6 +48,7 @@ public class GoalGeneral : MonoBehaviour
 
     void Update()
     {
+        //TODO: 無駄に呼び出し回数が多い
         if (ClearCheck() && !goaledFlag)
         {
             // クリア時の処理
