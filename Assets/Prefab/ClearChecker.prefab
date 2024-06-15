@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2021183543932921517}
   - component: {fileID: -6934021329215289865}
   m_Layer: 0
-  m_Name: General
+  m_Name: ClearChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
