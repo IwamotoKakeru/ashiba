@@ -11,19 +11,25 @@ using System.Collections.Generic;
 /// 実装:岩本
 public class GoalGeneral : MonoBehaviour
 {
-    private List<Goal> goalsScripts = new List<Goal>();
+    private List<Goal> goalsScripts = new();
     private bool goaledFlag = false;
     private int sceneNum;
     public GameObject clearLogoPrefab;
     private GameObject clearLogo;
+
     private GameObject fader;
     private FadeManager fade;
+
+    public AudioClip clear;
+    private AudioSource audioSource;
 
     private float intervalTime = 4.0f;
 
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         sceneNum = SceneManager.GetActiveScene().buildIndex;
         //すべてのゴールスクリプトの取得
         //TODO: 重い処理のため要改善
@@ -46,8 +52,12 @@ public class GoalGeneral : MonoBehaviour
         {
             // クリア時の処理
             goaledFlag = true;
+
+            audioSource.PlayOneShot(clear);
             clearLogo.SetActive(true);
+
             goalsScripts.ToList().ForEach(goal => goal.DisableGoal());
+
             StartCoroutine(GoToNextScene());
         }
     }
