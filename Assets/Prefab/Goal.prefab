@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83b003a5d0e3154793c31c32503f719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goal: {fileID: 8300000, guid: 96362fd79634e1b4da0c1f5cd82d56f0, type: 3}
+  goal: {fileID: 8300000, guid: f9bf1b341f18e4f269e535703108858a, type: 3}
   badGoal: {fileID: 8300000, guid: 74e698772a036cd48965f8d5c659626c, type: 3}
   audioSource: {fileID: 4477593899322352043}
   clearEffectPrefab: {fileID: 4274675606064075791, guid: c81815c9bc2e1481b82d43c1335999cd,
