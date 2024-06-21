@@ -4,37 +4,47 @@
 
 [![FchdptgaUAA1l_0](https://github.com/IwamotoKakeru/IwamotoKakeru/assets/34148721/9afd7be7-41c9-455d-8e80-bb27a1d99ff4)](https://unityroom.com/games/asiba)
 
-### UnityRoom ゲームリンク https://unityroom.com/games/asiba
+## 概要
 
-動作確認が取れたものはこちらへ挙げていきます
+キャラクターをアシバにしてゴールに"ためる"ゲームです
 
-クリア時間を競えるランキング機能があります
+対応デバイス：PC、スマートフォン
 
-### 開発段階ゲームリンク(GitHub Pages) https://iwamotokakeru.github.io/ashiba/WebGL/WebGL/
+この作品は Unity1 週間ゲームジャムお題「ためる」へ投稿された作品を現在進行形で改良しているものです
 
-開発段階のビルドであるため、正常に動作しない可能性があります
+[このイベントでの結果: 27/338 位, 楽しさ 14/338 位, 斬新さ 27/338 位](https://unityroom.com/unity1weeks/56/top)
 
-### レポジトリ URL https://github.com/IwamotoKakeru/ashiba
+## リンク
 
-### 説明動画 https://youtu.be/9uRUNfotOSo
+### UnityRoom ゲームリンク
 
-### 使用技術
+https://unityroom.com/games/asiba
+
+- 動作確認が取れたものはこちらへ挙げていきます
+
+- クリア時間を競えるランキング機能があります
+
+### 開発段階ゲームリンク(GitHub Pages)
+
+https://iwamotokakeru.github.io/ashiba/WebGL/WebGL/
+
+- 開発段階のビルドであるため、正常に動作しない可能性があります
+
+### レポジトリ URL
+
+https://github.com/IwamotoKakeru/ashiba
+
+### 説明動画
+
+https://youtu.be/tmGpFDHXRWc
+
+## 使用技術
 
 Unity 2022.3.6f1 (2024/2/9 より)
 
 Plastic SCM(2022/2 まで), GitHub(2022/2 から), GitHub Actions
 
 Plastic SCM のレポジトリと GitHub レポジトリを同期させているため、双方のコミット履歴を保持しています。
-
-### ゲーム概要
-
-キャラクターをアシバにしてゴールに"ためる"ゲームです
-
-対応デバイス：PC、スマートフォン
-
-この作品は Unity1 週間ゲームジャムお題「ためる」へ投稿された作品を現在進行形で改良しているものです。
-
-[このイベントでの結果: 27/338 位, 楽しさ 14/338 位, 斬新さ 27/338 位](https://unityroom.com/unity1weeks/56/top)
 
 ## 環境構築
 
