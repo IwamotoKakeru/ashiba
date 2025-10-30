@@ -40,7 +40,7 @@ https://youtu.be/tmGpFDHXRWc
 
 ## 使用技術
 
-Unity 2022.3.6f1 (2024/2/9 より)
+Unity 2022.3.62f2 (2025/10/31 より)
 
 Plastic SCM(2022/2 まで), GitHub(2022/2 から), GitHub Actions
 
